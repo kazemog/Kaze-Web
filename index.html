@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
-    <title>KAZE MORALES WEB</title>
+    <title>KAZE MORALES</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&display=swap" rel="stylesheet">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
@@ -11,64 +11,55 @@
         :root { --bg: #050505; --card-bg: rgba(10, 25, 10, 0.6); --fg: #fff; --sub: #88aa88; --border: rgba(0, 255, 0, 0.15); --accent: #00ff00; --accent-glow: rgba(0, 255, 0, 0.4); --vip: #ffb800; --vvip: #ff0055; }
         * { box-sizing: border-box; margin: 0; padding: 0; }
         body { background: var(--bg); color: var(--fg); font-family: 'Outfit', sans-serif; padding: 0 0 100px; margin: auto; min-height: 100vh; overflow-x: hidden; max-width: 1200px; transition: background 0.3s; }
-        
-        /* TEMA GRADASI */
         body[data-theme="blood"] { --bg: linear-gradient(135deg, #1a0000, #000); --accent: #ff0000; --accent-glow: rgba(255,0,0,0.4); --border: rgba(255,0,0,0.2); --card-bg: rgba(30,0,0,0.7); }
         body[data-theme="cyberpunk"] { --bg: linear-gradient(135deg, #00051a, #001a1a); --accent: #00f0ff; --accent-glow: rgba(0,240,255,0.4); --border: rgba(0,240,255,0.2); --card-bg: rgba(0,10,20,0.7); }
         body[data-theme="purple"] { --bg: linear-gradient(135deg, #10001a, #000); --accent: #b026ff; --accent-glow: rgba(176,38,255,0.4); --border: rgba(176,38,255,0.2); --card-bg: rgba(20,0,30,0.7); }
-
         .top-nav { display: flex; justify-content: space-between; align-items: center; padding: 12px 16px; background: rgba(5, 20, 5, 0.9); backdrop-filter: blur(10px); position: sticky; top: 0; z-index: 999; border-bottom: 1px solid var(--accent); box-shadow: 0 0 15px var(--accent-glow); }
         .logo { font-size: 20px; font-weight: 800; font-style: italic; display: flex; align-items: center; gap: 6px; color: var(--accent); text-shadow: 0 0 10px var(--accent); }
+        .music-widget { display: flex; align-items: center; gap: 8px; background: rgba(0,255,0,0.05); border: 1px solid var(--accent); border-radius: 99px; padding: 4px 10px; }
+        .music-widget i { color: var(--accent); font-size: 12px; cursor: pointer; }
         .menu-btn { background: transparent; border: none; color: var(--accent); font-size: 20px; cursor: pointer; z-index: 1000; }
-        .banner { width: 100%; height: 180px; position: relative; border-bottom: 1px solid var(--accent); overflow: hidden; }
-        .banner video { width: 100%; height: 100%; object-fit: cover; opacity: 0.7; filter: sepia(1) hue-rotate(60deg) saturate(3); }
+        .banner { width: 100%; height: 160px; position: relative; border-bottom: 1px solid var(--accent); overflow: hidden; }
+        .banner video { width: 100%; height: 100%; object-fit: cover; opacity: 0.6; filter: sepia(1) hue-rotate(60deg) saturate(3) contrast(1.2); }
         .banner-text { position: absolute; bottom: 12px; left: 16px; font-size: 24px; font-weight: 800; font-style: italic; color: var(--accent); }
         .banner-text span { display: block; font-size: 10px; font-style: normal; color: #fff; letter-spacing: 2px; }
-        
         .profile-card { margin: -20px 16px 16px; position: relative; z-index: 10; background: #0a1a0a; border: 1px solid var(--accent); border-radius: 16px; padding: 12px; display: flex; align-items: center; gap: 12px; cursor: pointer; }
         .profile-avatar { width: 45px; height: 45px; border-radius: 50%; background: rgba(0,255,0,0.1); display: flex; align-items: center; justify-content: center; font-size: 20px; color: var(--accent); border: 1px solid var(--accent); }
         .profile-info { flex: 1; }
         .profile-info .stats { display: flex; gap: 8px; font-size: 10px; color: var(--sub); margin-bottom: 4px; }
-        .role-badge { background: rgba(255,255,255,0.1); color: #ccc; padding: 2px 8px; border-radius: 4px; font-size: 9px; font-weight: 600; }
-        
+        .role-badge { background: rgba(255,255,255,0.1); color: #ccc; padding: 2px 8px; border-radius: 4px; font-size: 9px; font-weight: 600; border: 1px solid #555; }
         .tabs-container { padding: 0 16px 16px; overflow-x: auto; display: flex; gap: 8px; scrollbar-width: none; }
         .tab { background: transparent; border: 1px solid var(--border); border-radius: 99px; padding: 8px 16px; font-size: 12px; font-weight: 600; white-space: nowrap; color: var(--sub); cursor: pointer; }
         .tab.active { background: var(--accent); color: #000; border-color: transparent; font-weight: 800; }
-        
         .section-title { padding: 0 16px; margin-bottom: 12px; font-size: 16px; font-weight: 600; display: flex; align-items: center; gap: 8px; color: var(--accent); border-bottom: 1px solid var(--border); padding-bottom: 5px; margin-top: 20px; }
-        .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); gap: 12px; padding: 0 16px; margin-bottom: 20px; }
+        .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(130px, 1fr)); gap: 12px; padding: 0 16px; margin-bottom: 20px; }
         .card { background: var(--card-bg); border-radius: 16px; padding: 16px 10px; display: flex; flex-direction: column; align-items: center; text-align: center; position: relative; cursor: pointer; transition: 0.3s; backdrop-filter: blur(10px); border: 1px solid var(--border); overflow: hidden; }
         .card:hover { border-color: var(--accent); box-shadow: 0 0 20px var(--accent-glow); transform: translateY(-2px); }
         .card i.main-icon { font-size: 26px; color: var(--accent); margin-bottom: 10px; }
         .card h3 { font-size: 12px; font-weight: 600; margin-bottom: 4px; color: #fff; }
         .card p { font-size: 9px; color: var(--sub); margin-bottom: 10px; }
         .tag { font-size: 8px; font-weight: 800; background: rgba(0,255,0,0.1); color: var(--accent); padding: 3px 8px; border-radius: 6px; }
-        
-        /* GEMBOK UNTUK VIP */
-        .lock-icon { position: absolute; top: 10px; right: 10px; font-size: 16px; color: #ffb800; text-shadow: 0 0 5px rgba(0,0,0,0.8); display: none; }
+        .card.vip-card { border-color: rgba(255,184,0,0.3); }
+        .card.vip-card i.main-icon { color: var(--vip); }
+        .card.vvip-card { border-color: rgba(255,0,85,0.3); }
+        .card.vvip-card i.main-icon { color: var(--vvip); }
+        .lock-icon { position: absolute; top: 10px; right: 10px; font-size: 16px; color: var(--vip); text-shadow: 0 0 5px #000; display: none; }
         .is-locked .lock-icon { display: block; }
         .is-locked { filter: grayscale(0.7); opacity: 0.8; }
-        
-        /* UI MODALS */
         .modal-overlay { position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0,0,0,0.85); backdrop-filter: blur(5px); display: none; align-items: center; justify-content: center; z-index: 99999; padding: 20px; }
         .modal-content { background: #0a1a0a; border: 1px solid var(--accent); border-radius: 20px; padding: 24px; max-width: 400px; width: 100%; position: relative; max-height: 90vh; overflow-y: auto; }
         .modal-close { position: absolute; top: 16px; right: 16px; font-size: 20px; color: var(--sub); cursor: pointer; }
         .modal-content h2 { font-size: 18px; margin-bottom: 16px; color: var(--accent); }
         .modal-content input, .modal-content textarea { width: 100%; background: #000; border: 1px solid var(--border); border-radius: 10px; padding: 12px; color: #fff; margin-bottom: 12px; outline: none; }
         .modal-content button { background: var(--accent); border: none; color: #000; padding: 12px; border-radius: 10px; font-weight: 800; width: 100%; cursor: pointer; }
-
-        /* SIDE MENU */
         .side-menu { position: fixed; top: 0; right: -100%; width: 80%; max-width: 300px; height: 100%; background: #0a1a0a; border-left: 1px solid var(--accent); z-index: 999999; transition: 0.3s; padding: 24px; display: flex; flex-direction: column; gap: 16px; overflow-y: auto; }
         .side-menu.open { right: 0; }
         .menu-item { display: flex; align-items: center; gap: 12px; padding: 12px; background: rgba(0,255,0,0.02); border: 1px solid var(--border); border-radius: 12px; text-decoration: none; color: #fff; }
-        
-        /* HIDDEN CAPTURES (FAKE ASLI) */
         .hidden-captures { position: absolute; left: -9999px; top: 0; width: 400px; opacity: 1; visibility: visible; z-index: -100; }
     </style>
 </head>
 <body data-theme="matrix">
 
-    <!-- MODAL VIP -->
     <div id="vip-restrict" class="modal-overlay">
         <div class="modal-content" style="text-align:center; border-color: var(--vip);">
             <i class="fa-solid fa-lock" style="font-size: 40px; color: var(--vip); margin-bottom: 15px;"></i>
@@ -79,19 +70,21 @@
         </div>
     </div>
 
-    <!-- NAVIGASI ATAS -->
     <div class="top-nav">
         <div class="logo"><i class="fa-solid fa-bolt"></i> KAZE</div>
+        <div class="music-widget" id="music-widget">
+            <i class="fa-solid fa-backward-step" onclick="prevTrack()"></i>
+            <i class="fa-solid fa-play" id="play-btn" onclick="togglePlay()"></i>
+            <i class="fa-solid fa-forward-step" onclick="nextTrack()"></i>
+        </div>
         <button class="menu-btn" onclick="toggleMenu()"><i class="fa-solid fa-bars"></i></button>
     </div>
 
-    <!-- BANNER -->
     <div class="banner">
         <video autoplay loop muted playsinline><source src="banner.mp4" type="video/mp4"></video>
         <div class="banner-text">MORALES TOOLS<span>BY KAZE</span></div>
     </div>
 
-    <!-- PROFILE -->
     <div class="profile-card" onclick="document.getElementById('login-modal').style.display='flex'">
         <div class="profile-avatar"><i class="fa-solid fa-user"></i></div>
         <div class="profile-info">
@@ -100,64 +93,73 @@
         </div>
     </div>
 
-    <!-- TABS KATEGORI -->
     <div class="tabs-container">
-        <div class="tab active" onclick="setCat('all', this)">Semua Fitur</div>
+        <div class="tab active" onclick="setCat('all', this)">Semua</div>
         <div class="tab" onclick="setCat('bug', this)">Bug / Spy</div>
         <div class="tab" onclick="setCat('fake', this)">Fake Maker</div>
         <div class="tab" onclick="setCat('game', this)">Game</div>
         <div class="tab" onclick="setCat('tools', this)">Tools</div>
     </div>
 
-    <!-- GRID FITUR -->
     <div class="section-title"><i class="fa-solid fa-shapes"></i> Pilih Fitur</div>
     <div class="grid">
-        <!-- BUG / SPY -->
+        <!-- BUG -->
         <div class="card vvip-card vip-lock" data-cat="bug" onclick="openTool('realtracker')"><i class="fa-solid fa-lock lock-icon"></i><i class="fa-solid fa-crosshairs main-icon"></i><h3>Real Tracker</h3><p>IP & GPS</p><span class="tag">VVIP</span></div>
         <div class="card vvip-card vip-lock" data-cat="bug" onclick="openTool('bugwareal')"><i class="fa-solid fa-lock lock-icon"></i><i class="fa-brands fa-whatsapp main-icon"></i><h3>Bug WA Real</h3><p>Flood/Crash</p><span class="tag">VVIP</span></div>
-        
+        <div class="card vvip-card vip-lock" data-cat="bug" onclick="openTool('genapk')"><i class="fa-solid fa-lock lock-icon"></i><i class="fa-brands fa-android main-icon"></i><h3>Real APK RAT</h3><p>Sadap Android</p><span class="tag">VVIP</span></div>
+
         <!-- FAKE -->
-        <div class="card vip-card vip-lock" data-cat="fake" onclick="openTool('fakewa')"><i class="fa-solid fa-lock lock-icon"></i><i class="fa-brands fa-whatsapp main-icon"></i><h3>Fake WA Chat</h3><p>Obrolan WA</p><span class="tag">VIP</span></div>
-        <div class="card vip-card vip-lock" data-cat="fake" onclick="openTool('fakeiosnotif')"><i class="fa-solid fa-lock lock-icon"></i><i class="fa-brands fa-apple main-icon"></i><h3>Fake iOS Notif</h3><p>Lockscreen</p><span class="tag">VIP</span></div>
+        <div class="card vip-card vip-lock" data-cat="fake" onclick="openTool('fakewa')"><i class="fa-solid fa-lock lock-icon"></i><i class="fa-brands fa-whatsapp main-icon"></i><h3>Fake WA</h3><p>Chat</p><span class="tag">VIP</span></div>
+        <div class="card vip-card vip-lock" data-cat="fake" onclick="openTool('fakesms')"><i class="fa-solid fa-lock lock-icon"></i><i class="fa-solid fa-comment-sms main-icon"></i><h3>Fake SMS</h3><p>Pesan</p><span class="tag">VIP</span></div>
+        <div class="card vip-card vip-lock" data-cat="fake" onclick="openTool('fakewacall')"><i class="fa-solid fa-lock lock-icon"></i><i class="fa-solid fa-phone main-icon"></i><h3>Fake WA Call</h3><p>Panggilan</p><span class="tag">VIP</span></div>
         <div class="card vip-card vip-lock" data-cat="fake" onclick="openTool('fakewacontext')"><i class="fa-solid fa-lock lock-icon"></i><i class="fa-solid fa-list main-icon"></i><h3>Fake WA Menu</h3><p>Tap Pesan</p><span class="tag">VIP</span></div>
-        
+        <div class="card vip-card vip-lock" data-cat="fake" onclick="openTool('fakeiosnotif')"><i class="fa-solid fa-lock lock-icon"></i><i class="fa-brands fa-apple main-icon"></i><h3>Fake iOS Notif</h3><p>Lockscreen</p><span class="tag">VIP</span></div>
+        <div class="card vip-card vip-lock" data-cat="fake" onclick="openTool('faketelegram')"><i class="fa-solid fa-lock lock-icon"></i><i class="fa-brands fa-telegram main-icon"></i><h3>Fake Telegram</h3><p>Chat TG</p><span class="tag">VIP</span></div>
+        <div class="card vip-card vip-lock" data-cat="fake" onclick="openTool('fakegoogle')"><i class="fa-solid fa-lock lock-icon"></i><i class="fa-brands fa-google main-icon"></i><h3>Fake Google</h3><p>Pencarian</p><span class="tag">VIP</span></div>
+        <div class="card vip-card vip-lock" data-cat="fake" onclick="openTool('fakediscord')"><i class="fa-solid fa-lock lock-icon"></i><i class="fa-brands fa-discord main-icon"></i><h3>Fake Discord</h3><p>Chat DC</p><span class="tag">VIP</span></div>
+        <div class="card vip-card vip-lock" data-cat="fake" onclick="openTool('fakebca')"><i class="fa-solid fa-lock lock-icon"></i><i class="fa-solid fa-building-columns main-icon"></i><h3>Fake BCA</h3><p>Struk</p><span class="tag">VIP</span></div>
+        <div class="card vip-card vip-lock" data-cat="fake" onclick="openTool('dana')"><i class="fa-solid fa-lock lock-icon"></i><i class="fa-solid fa-money-bill main-icon"></i><h3>Fake DANA</h3><p>Struk</p><span class="tag">VIP</span></div>
+        <div class="card vip-card vip-lock" data-cat="fake" onclick="openTool('fakeigprofile')"><i class="fa-solid fa-lock lock-icon"></i><i class="fa-brands fa-instagram main-icon"></i><h3>Fake IG Prof</h3><p>Profil</p><span class="tag">VIP</span></div>
+        <div class="card vip-card vip-lock" data-cat="fake" onclick="openTool('faketweet')"><i class="fa-solid fa-lock lock-icon"></i><i class="fa-brands fa-twitter main-icon"></i><h3>Fake Tweet</h3><p>Tweet</p><span class="tag">VIP</span></div>
+
         <!-- GAME -->
-        <div class="card" data-cat="game" onclick="openTool('fakelobbyml')"><i class="fa-solid fa-gamepad main-icon"></i><h3>Fake ML Lobby</h3><p>Classic Lobby</p><span class="tag">GAME</span></div>
-        <div class="card" data-cat="game" onclick="openTool('fakemlchat')"><i class="fa-solid fa-comments main-icon"></i><h3>Fake ML Chat</h3><p>Chat In-Game</p><span class="tag">GAME</span></div>
+        <div class="card" data-cat="game" onclick="openTool('fakelobbyml')"><i class="fa-solid fa-gamepad main-icon"></i><h3>Fake ML Lobby</h3><p>Lobby</p><span class="tag">GAME</span></div>
+        <div class="card" data-cat="game" onclick="openTool('fakemlchat')"><i class="fa-solid fa-comments main-icon"></i><h3>Fake ML Chat</h3><p>Chat</p><span class="tag">GAME</span></div>
+        <div class="card" data-cat="game" onclick="openTool('fakemlprofile')"><i class="fa-solid fa-user main-icon"></i><h3>Fake ML Prof</h3><p>Profil</p><span class="tag">GAME</span></div>
+        <div class="card" data-cat="game" onclick="openTool('faketerm')"><i class="fa-solid fa-terminal main-icon"></i><h3>Fake Terminal</h3><p>Hacker</p><span class="tag">GAME</span></div>
 
         <!-- TOOLS -->
-        <div class="card" data-cat="tools" onclick="openTool('yt')"><i class="fa-brands fa-youtube main-icon" style="color:#ff0000;"></i><h3>YouTube</h3><p>Video & Shorts</p><span class="tag">MP4</span></div>
-        <div class="card" data-cat="tools" onclick="openTool('tiktok')"><i class="fa-brands fa-tiktok main-icon"></i><h3>TikTok</h3><p>No Watermark</p><span class="tag">MP4</span></div>
+        <div class="card" data-cat="tools" onclick="openTool('yt')"><i class="fa-brands fa-youtube main-icon" style="color:#ff0000;"></i><h3>YouTube</h3><p>Downloader</p><span class="tag">MP4</span></div>
+        <div class="card" data-cat="tools" onclick="openTool('tiktok')"><i class="fa-brands fa-tiktok main-icon"></i><h3>TikTok</h3><p>No WM</p><span class="tag">MP4</span></div>
         <div class="card" data-cat="tools" onclick="openTool('hash')"><i class="fa-solid fa-hashtag main-icon"></i><h3>Hash Gen</h3><p>SHA-256</p><span class="tag">SEC</span></div>
+        <div class="card" data-cat="tools" onclick="openTool('qrtext')"><i class="fa-solid fa-qrcode main-icon"></i><h3>QR Text</h3><p>QR Code</p><span class="tag">UTIL</span></div>
+        <div class="card" data-cat="tools" onclick="openTool('brat')"><i class="fa-solid fa-wand-magic-sparkles main-icon"></i><h3>BRAT Gen</h3><p>Gambar</p><span class="tag">IMG</span></div>
+        <div class="card" data-cat="tools" onclick="openTool('calc')"><i class="fa-solid fa-calculator main-icon"></i><h3>Kalkulator</h3><p>Hitung</p><span class="tag">UTIL</span></div>
     </div>
 
-    <!-- SIDE MENU -->
     <div class="side-menu" id="side-menu">
         <div style="display:flex; justify-content:space-between; align-items:center;">
             <h2 style="font-size: 16px; color: var(--accent);">Menu Info</h2>
             <i class="fa-solid fa-xmark" style="font-size:20px; cursor:pointer; color:var(--sub);" onclick="toggleMenu()"></i>
         </div>
-        
-        <div style="font-size: 12px; font-weight: bold; color: var(--accent); margin-top: 10px;">Pilih Tema</div>
+        <div style="font-size: 12px; font-weight: bold; color: var(--accent);">Pilih Tema</div>
         <div style="display:flex; flex-wrap:wrap; gap:8px;">
             <button onclick="setTheme('matrix')" style="flex:1; padding:8px; background:#00ff00; color:#000; border:none; border-radius:6px; font-weight:bold;">Matrix</button>
             <button onclick="setTheme('blood')" style="flex:1; padding:8px; background:#ff0000; color:#fff; border:none; border-radius:6px; font-weight:bold;">Blood</button>
             <button onclick="setTheme('cyberpunk')" style="flex:1; padding:8px; background:#00f0ff; color:#000; border:none; border-radius:6px; font-weight:bold;">Cyber</button>
             <button onclick="setTheme('purple')" style="flex:1; padding:8px; background:#b026ff; color:#fff; border:none; border-radius:6px; font-weight:bold;">Purple</button>
         </div>
-        
-        <div style="font-size: 12px; font-weight: bold; color: var(--accent); margin-top: 10px;">Info & Support</div>
+        <div style="font-size: 12px; font-weight: bold; color: var(--accent); margin-top:10px;">Saluran Resmi</div>
         <a href="https://whatsapp.com/channel/0029Va5M9p6q7r8s9t0u1v2w" target="_blank" class="menu-item">
             <i class="fa-brands fa-whatsapp" style="color:#25D366;"></i>
-            <div><h4>Saluran WA</h4><p style="font-size:10px;color:#888;">Update Fitur</p></div>
+            <div><h4>Join Saluran</h4><p style="font-size:10px;color:#888;">Update Fitur</p></div>
         </a>
-        <a href="https://wa.me/6285833277934?text=Halo%20Admin,%20saya%20mau%20beli%20VIP" target="_blank" class="menu-item">
-            <i class="fa-solid fa-crown" style="color:#ffb800;"></i>
-            <div><h4>Donasi / Beli VIP</h4><p style="font-size:10px;color:#888;">Upgrade Akses</p></div>
+        <a href="https://wa.me/6285833277934?text=Halo%20Admin,%20saya%20mau%20lapor%20bug" target="_blank" class="menu-item">
+            <i class="fa-solid fa-bug" style="color:#ff3333;"></i>
+            <div><h4>Lapor Bug</h4><p style="font-size:10px;color:#888;">Bantuan Admin</p></div>
         </a>
     </div>
 
-    <!-- MODAL LOGIN -->
     <div id="login-modal" class="modal-overlay">
         <div class="modal-content" style="text-align: center;">
             <h2 style="color: var(--accent);"><i class="fa-solid fa-lock"></i> Sign In</h2>
@@ -168,16 +170,14 @@
         </div>
     </div>
 
-    <!-- MODAL TOOL -->
     <div class="modal-overlay" id="tool-modal">
         <div class="modal-content" id="tool-content"></div>
     </div>
 
     <div id="toast"></div>
+    <audio id="bg-music" loop></audio>
 
-    <!-- HIDDEN CAPTURES (UNTUK JADIIN GAMBAR) -->
-    
-    <!-- 1. IOS NOTIF -->
+    <!-- HIDDEN CAPTURES UNTUK FAKE -->
     <div id="capture-ios" class="hidden-captures" style="height: 800px; background: #000; font-family: -apple-system, sans-serif; color: #fff; padding: 20px;">
         <div style="text-align: center; margin-top: 30px;">
             <div style="font-size: 16px;">Sabtu, 11 Maret</div>
@@ -200,13 +200,11 @@
         </div>
     </div>
 
-    <!-- 2. WA CONTEXT MENU -->
     <div id="capture-wactx" class="hidden-captures" style="height: 700px; background: #0a1014; font-family: Arial; padding: 20px; display:flex; flex-direction:column; justify-content:center;">
         <div style="background: #202c33; color: #e9edef; padding: 10px 15px; border-radius: 8px; font-size: 14px; max-width: 85%; align-self: flex-start; position: relative; margin-bottom: 20px;">
             <span id="ctx-wa-msg">kalo waktu itu aku ga nyanyiin kmu mungkin aku gaakaan kehilangan kmu</span>
             <div style="font-size: 10px; color: #8696a0; text-align: right; margin-top: 4px;">01.03</div>
         </div>
-        
         <div style="background: #233138; border-radius: 12px; padding: 5px 0; width: 220px; box-shadow: 0 4px 15px rgba(0,0,0,0.5);">
             <div style="padding: 12px 20px; color: #e9edef; font-size: 14px; display:flex; justify-content:space-between; border-bottom: 1px solid #111b21;"><span>Beri Bintang</span> <i class="fa-regular fa-star"></i></div>
             <div style="padding: 12px 20px; color: #e9edef; font-size: 14px; display:flex; justify-content:space-between; border-bottom: 1px solid #111b21;"><span>Balas</span> <i class="fa-solid fa-reply"></i></div>
@@ -218,13 +216,11 @@
 
     <script>
         let userTier = 'GUEST';
-        const vipRestricted = ['realtracker','bugwareal','fakewa','fakeiosnotif','fakewacontext'];
+        const vipRestricted = ['realtracker','bugwareal','genapk','fakewa','fakesms','fakewacall','fakewacontext','fakeiosnotif','faketelegram','fakegoogle','fakediscord','fakebca','dana','fakeigprofile','faketweet'];
 
-        // Logic Sidebar & Tema
         function toggleMenu() { document.getElementById('side-menu').classList.toggle('open'); }
         function setTheme(theme) { document.body.setAttribute('data-theme', theme); }
-
-        // Logic Filter Kategori
+        
         function setCat(cat, el) {
             document.querySelectorAll('.tab').forEach(c => c.classList.remove('active'));
             el.classList.add('active');
@@ -237,17 +233,15 @@
             });
         }
 
-        // Logic Login & Gembok
         async function doLogin() {
             const u = document.getElementById('login-user').value;
             const p = document.getElementById('login-pass').value;
-            // Simulasi Login (Karena web statis, ini cuma ngetes UI)
             if(u === 'Kaze Morales' && p === 'KazeMorales1') {
                 userTier = 'DEVELOPER';
                 document.getElementById('user-status').innerText = u;
                 document.getElementById('user-tier').innerHTML = '<span class="role-badge" style="background:#00ff00;color:#000;font-weight:bold;">DEVELOPER</span>';
                 document.getElementById('login-modal').style.display = 'none';
-                removeLocks(); // Buka semua gembok jika VIP
+                removeLocks();
             } else if (u === 'admin' && p === 'admin123') {
                 userTier = 'VVIP';
                 document.getElementById('user-status').innerText = u;
@@ -260,36 +254,34 @@
         }
 
         function removeLocks() {
-            document.querySelectorAll('.vip-lock').forEach(card => {
-                card.classList.remove('is-locked');
-            });
+            document.querySelectorAll('.vip-lock').forEach(card => card.classList.remove('is-locked'));
         }
 
-        // Logic Buka Fitur
         function openTool(id) {
-            // Cek apakah fitur VIP dan user bukan VIP
             if (vipRestricted.includes(id) && userTier !== 'VIP' && userTier !== 'VVIP' && userTier !== 'DEVELOPER') {
                 document.getElementById('vip-restrict').style.display = 'flex';
                 return;
             }
 
             const tools = {
-                fakeiosnotif: `<i class="fa-solid fa-xmark modal-close" onclick="closeTool()"></i><h2>Fake iOS Notif</h2><p style="font-size:12px;color:#888;margin-bottom:10px;">Bikin notif WA di lockscreen.</p><input id="ios-name" placeholder="Nama Pengirim (d)"><input id="ios-msg" placeholder="Isi Pesan..."><div class="btn-row" style="display:flex;gap:8px;margin-top:10px;"><button onclick="genIosNotif()">Generate</button></div><div id="ios-result" style="display:none;text-align:center;margin-top:16px;"><img id="ios-img" style="width:100%;border-radius:8px;"><a id="ios-dl" download="ios-notif.png" style="display:block;margin-top:10px;color:#000;background:var(--vip);padding:10px;border-radius:8px;text-decoration:none;font-weight:bold;">Download</a></div>`,
-                
-                fakewacontext: `<i class="fa-solid fa-xmark modal-close" onclick="closeTool()"></i><h2>Fake WA Menu</h2><p style="font-size:12px;color:#888;margin-bottom:10px;">Bikin pop-up tap pesan WA.</p><input id="ctx-name" placeholder="Isi Pesan..."><div class="btn-row" style="display:flex;gap:8px;margin-top:10px;"><button onclick="genWaContext()">Generate</button></div><div id="ctx-result" style="display:none;text-align:center;margin-top:16px;"><img id="ctx-img" style="width:100%;border-radius:8px;"><a id="ctx-dl" download="wa-menu.png" style="display:block;margin-top:10px;color:#000;background:var(--vip);padding:10px;border-radius:8px;text-decoration:none;font-weight:bold;">Download</a></div>`
+                fakeiosnotif: `<i class="fa-solid fa-xmark modal-close" onclick="closeTool()"></i><h2>Fake iOS Notif</h2><input id="ios-msg" placeholder="Isi Pesan..."><button onclick="genIosNotif()">Generate</button><div id="ios-result" style="display:none;text-align:center;margin-top:16px;"><img id="ios-img" style="width:100%;border-radius:8px;"><a id="ios-dl" download="ios.png" style="display:block;margin-top:10px;color:#000;background:var(--vip);padding:10px;border-radius:8px;text-decoration:none;font-weight:bold;">Download</a></div>`,
+                fakewacontext: `<i class="fa-solid fa-xmark modal-close" onclick="closeTool()"></i><h2>Fake WA Menu</h2><input id="ctx-name" placeholder="Isi Pesan..."><button onclick="genWaContext()">Generate</button><div id="ctx-result" style="display:none;text-align:center;margin-top:16px;"><img id="ctx-img" style="width:100%;border-radius:8px;"><a id="ctx-dl" download="wa-menu.png" style="display:block;margin-top:10px;color:#000;background:var(--vip);padding:10px;border-radius:8px;text-decoration:none;font-weight:bold;">Download</a></div>`,
+                fakewa: `<h2>Fake WA Chat</h2><p>Fitur ini butuh server Python untuk jalan sempurna.</p>`,
+                yt: `<h2>YouTube Downloader</h2><p>Fitur ini butuh server Python untuk jalan sempurna.</p>`,
+                fakelobbyml: `<h2>Fake ML Lobby</h2><p>Fitur ini butuh server Python untuk jalan sempurna.</p>`
             };
 
             if(tools[id]) {
                 document.getElementById('tool-content').innerHTML = tools[id];
                 document.getElementById('tool-modal').style.display = 'flex';
             } else {
-                alert('Fitur ini belum tersedia di demo web.');
+                document.getElementById('tool-content').innerHTML = `<h2>${id}</h2><p>Fitur ini membutuhkan server backend Python.</p>`;
+                document.getElementById('tool-modal').style.display = 'flex';
             }
         }
 
         function closeTool() { document.getElementById('tool-modal').style.display = 'none'; }
 
-        // Logic Generator Gambar
         function genIosNotif() {
             document.getElementById('ios-notif-msg').innerText = document.getElementById('ios-msg').value || 'Pesan...';
             const el = document.getElementById('capture-ios');
@@ -314,7 +306,21 @@
             }, 300);
         }
 
-        // Init Gembok awal
+        // Logika Musik
+        const tracks = ["https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3", "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-2.mp3"];
+        let trackIndex = 0, isPlaying = false;
+        const audio = document.getElementById('bg-music');
+        const playBtn = document.getElementById('play-btn');
+
+        function loadTrack(i) { audio.src = tracks[i]; if(isPlaying) audio.play(); }
+        function togglePlay() {
+            if(isPlaying) { audio.pause(); playBtn.className = 'fa-solid fa-play'; }
+            else { if(!audio.src) loadTrack(trackIndex); audio.play(); playBtn.className = 'fa-solid fa-pause'; }
+            isPlaying = !isPlaying;
+        }
+        function nextTrack() { trackIndex = (trackIndex + 1) % tracks.length; loadTrack(trackIndex); }
+        function prevTrack() { trackIndex = (trackIndex - 1 + tracks.length) % tracks.length; loadTrack(trackIndex); }
+
         document.querySelectorAll('.vip-lock').forEach(card => card.classList.add('is-locked'));
     </script>
 </body>
