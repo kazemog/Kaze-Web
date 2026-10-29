@@ -103,44 +103,59 @@
         <div class="tab" onclick="setCat('game', this)">Game</div>
     </div>
 
-    <!-- BASIC -->
+    <!-- BASIC TOOLS -->
     <div class="section-title" data-cat="basic"><i class="fa-solid fa-shapes"></i> Basic Tools</div>
     <div class="grid">
-        <div class="card" data-cat="basic" onclick="openTool('yt')"><i class="fa-brands fa-youtube main-icon" style="color:#ff0000;"></i><h3>YouTube</h3><p>DL Video</p><span class="tag">MP4</span></div>
-        <div class="card" data-cat="basic" onclick="openTool('tiktok')"><i class="fa-brands fa-tiktok main-icon"></i><h3>TikTok</h3><p>No WM</p><span class="tag">MP4</span></div>
+        <div class="card" data-cat="basic" onclick="openTool('yt')"><i class="fa-brands fa-youtube main-icon" style="color:#ff0000;"></i><h3>YouTube</h3><p>Downloader</p><span class="tag">MP4</span></div>
+        <div class="card" data-cat="basic" onclick="openTool('tiktok')"><i class="fa-brands fa-tiktok main-icon"></i><h3>TikTok</h3><p>No Watermark</p><span class="tag">MP4</span></div>
+        <div class="card" data-cat="basic" onclick="openTool('ig')"><i class="fa-brands fa-instagram main-icon" style="color:#e1306c;"></i><h3>Instagram</h3><p>Reels & Post</p><span class="tag">MP4</span></div>
+        <div class="card" data-cat="basic" onclick="openTool('fb')"><i class="fa-brands fa-facebook main-icon" style="color:#1877f2;"></i><h3>Facebook</h3><p>Video</p><span class="tag">MP4</span></div>
+        <div class="card" data-cat="basic" onclick="openTool('ewallet')"><i class="fa-solid fa-wallet main-icon"></i><h3>E-Wallet</h3><p>QR Transfer</p><span class="tag">QRIS</span></div>
+        <div class="card" data-cat="basic" onclick="openTool('wifi')"><i class="fa-solid fa-wifi main-icon"></i><h3>QR WiFi</h3><p>Auto Connect</p><span class="tag">QRIS</span></div>
+        <div class="card" data-cat="basic" onclick="openTool('brat')"><i class="fa-solid fa-wand-magic-sparkles main-icon"></i><h3>BRAT Gen</h3><p>Static Image</p><span class="tag">IMG</span></div>
+        <div class="card" data-cat="basic" onclick="openTool('hdphoto')"><i class="fa-solid fa-camera main-icon"></i><h3>Image HD</h3><p>Perbesar 2x</p><span class="tag">HD</span></div>
+        <div class="card" data-cat="basic" onclick="openTool('compress')"><i class="fa-solid fa-compress main-icon"></i><h3>Compress</h3><p>Kecilkan IMG</p><span class="tag">IMG</span></div>
+        <div class="card" data-cat="basic" onclick="openTool('pdf')"><i class="fa-solid fa-file-pdf main-icon"></i><h3>Image to PDF</h3><p>Gabung</p><span class="tag">FILE</span></div>
         <div class="card" data-cat="basic" onclick="openTool('hash')"><i class="fa-solid fa-hashtag main-icon"></i><h3>Hash Gen</h3><p>SHA-256</p><span class="tag">SEC</span></div>
         <div class="card" data-cat="basic" onclick="openTool('b64')"><i class="fa-solid fa-code main-icon"></i><h3>Base64</h3><p>Enc/Dec</p><span class="tag">SEC</span></div>
-        <div class="card" data-cat="basic" onclick="openTool('qrtext')"><i class="fa-solid fa-qrcode main-icon"></i><h3>QR Text</h3><p>QR Code</p><span class="tag">UTIL</span></div>
-        <div class="card" data-cat="basic" onclick="openTool('brat')"><i class="fa-solid fa-wand-magic-sparkles main-icon"></i><h3>BRAT Gen</h3><p>Gambar</p><span class="tag">IMG</span></div>
-        <div class="card" data-cat="basic" onclick="openTool('calc')"><i class="fa-solid fa-calculator main-icon"></i><h3>Kalkulator</h3><p>Hitung</p><span class="tag">UTIL</span></div>
-        <div class="card" data-cat="basic" onclick="openTool('caseconv')"><i class="fa-solid fa-font main-icon"></i><h3>Case Conv</h3><p>Huruf</p><span class="tag">TEXT</span></div>
-        <div class="card" data-cat="basic" onclick="openTool('textrev')"><i class="fa-solid fa-rotate-left main-icon"></i><h3>Text Rev</h3><p>Balik Teks</p><span class="tag">TEXT</span></div>
     </div>
 
-    <!-- VIP -->
+    <!-- VIP TOOLS -->
     <div class="section-title" data-cat="vip" style="color:var(--vip); border-color:rgba(255,184,0,0.3);"><i class="fa-solid fa-crown"></i> VIP Tools</div>
     <div class="grid">
         <div class="card vip-card vip-lock" data-cat="vip" onclick="openTool('fakewa')"><i class="fa-solid fa-lock lock-icon"></i><i class="fa-brands fa-whatsapp main-icon"></i><h3>Fake WA</h3><p>Chat</p><span class="tag" style="color:var(--vip);">VIP</span></div>
+        <div class="card vip-card vip-lock" data-cat="vip" onclick="openTool('fakesms')"><i class="fa-solid fa-lock lock-icon"></i><i class="fa-solid fa-comment-sms main-icon"></i><h3>Fake SMS</h3><p>Pesan</p><span class="tag" style="color:var(--vip);">VIP</span></div>
+        <div class="card vip-card vip-lock" data-cat="vip" onclick="openTool('fakewacall')"><i class="fa-solid fa-lock lock-icon"></i><i class="fa-solid fa-phone main-icon"></i><h3>Fake WA Call</h3><p>Panggilan</p><span class="tag" style="color:var(--vip);">VIP</span></div>
+        <div class="card vip-card vip-lock" data-cat="vip" onclick="openTool('fakewacontext')"><i class="fa-solid fa-lock lock-icon"></i><i class="fa-solid fa-list main-icon"></i><h3>Fake WA Menu</h3><p>Tap Pesan</p><span class="tag" style="color:var(--vip);">VIP</span></div>
+        <div class="card vip-card vip-lock" data-cat="vip" onclick="openTool('fakeiosnotif')"><i class="fa-solid fa-lock lock-icon"></i><i class="fa-brands fa-apple main-icon"></i><h3>Fake iOS Notif</h3><p>Lockscreen</p><span class="tag" style="color:var(--vip);">VIP</span></div>
+        <div class="card vip-card vip-lock" data-cat="vip" onclick="openTool('faketelegram')"><i class="fa-solid fa-lock lock-icon"></i><i class="fa-brands fa-telegram main-icon"></i><h3>Fake Telegram</h3><p>Chat TG</p><span class="tag" style="color:var(--vip);">VIP</span></div>
+        <div class="card vip-card vip-lock" data-cat="vip" onclick="openTool('fakegoogle')"><i class="fa-solid fa-lock lock-icon"></i><i class="fa-brands fa-google main-icon"></i><h3>Fake Google</h3><p>Pencarian</p><span class="tag" style="color:var(--vip);">VIP</span></div>
+        <div class="card vip-card vip-lock" data-cat="vip" onclick="openTool('fakediscord')"><i class="fa-solid fa-lock lock-icon"></i><i class="fa-brands fa-discord main-icon"></i><h3>Fake Discord</h3><p>Chat DC</p><span class="tag" style="color:var(--vip);">VIP</span></div>
         <div class="card vip-card vip-lock" data-cat="vip" onclick="openTool('fakebca')"><i class="fa-solid fa-lock lock-icon"></i><i class="fa-solid fa-building-columns main-icon"></i><h3>Fake BCA</h3><p>Struk</p><span class="tag" style="color:var(--vip);">VIP</span></div>
         <div class="card vip-card vip-lock" data-cat="vip" onclick="openTool('dana')"><i class="fa-solid fa-lock lock-icon"></i><i class="fa-solid fa-money-bill main-icon"></i><h3>Fake DANA</h3><p>Struk</p><span class="tag" style="color:var(--vip);">VIP</span></div>
-        <div class="card vip-card vip-lock" data-cat="vip" onclick="openTool('fakeiosnotif')"><i class="fa-solid fa-lock lock-icon"></i><i class="fa-brands fa-apple main-icon"></i><h3>Fake iOS Notif</h3><p>Lockscreen</p><span class="tag" style="color:var(--vip);">VIP</span></div>
-        <div class="card vip-card vip-lock" data-cat="vip" onclick="openTool('fakewacontext')"><i class="fa-solid fa-lock lock-icon"></i><i class="fa-solid fa-list main-icon"></i><h3>Fake WA Menu</h3><p>Tap Pesan</p><span class="tag" style="color:var(--vip);">VIP</span></div>
-        <div class="card vip-card vip-lock" data-cat="vip" onclick="openTool('faketelegram')"><i class="fa-solid fa-lock lock-icon"></i><i class="fa-brands fa-telegram main-icon"></i><h3>Fake Telegram</h3><p>Chat TG</p><span class="tag" style="color:var(--vip);">VIP</span></div>
-        <div class="card vip-card vip-lock" data-cat="vip" onclick="openTool('fakegoogle')"><i class="fa-solid fa-lock lock-icon"></i><i class="fa-brands fa-google main-icon"></i><h3>Fake Google</h3><p>Cari</p><span class="tag" style="color:var(--vip);">VIP</span></div>
-        <div class="card vip-card vip-lock" data-cat="vip" onclick="openTool('fakediscord')"><i class="fa-solid fa-lock lock-icon"></i><i class="fa-brands fa-discord main-icon"></i><h3>Fake Discord</h3><p>Chat DC</p><span class="tag" style="color:var(--vip);">VIP</span></div>
-        <div class="card vip-card vip-lock" data-cat="vip" onclick="openTool('faketweet')"><i class="fa-solid fa-lock lock-icon"></i><i class="fa-brands fa-twitter main-icon"></i><h3>Fake Tweet</h3><p>Tweet</p><span class="tag" style="color:var(--vip);">VIP</span></div>
         <div class="card vip-card vip-lock" data-cat="vip" onclick="openTool('fakeigprofile')"><i class="fa-solid fa-lock lock-icon"></i><i class="fa-brands fa-instagram main-icon"></i><h3>Fake IG Prof</h3><p>Profil</p><span class="tag" style="color:var(--vip);">VIP</span></div>
+        <div class="card vip-card vip-lock" data-cat="vip" onclick="openTool('faketweet')"><i class="fa-solid fa-lock lock-icon"></i><i class="fa-brands fa-twitter main-icon"></i><h3>Fake Tweet</h3><p>Tweet</p><span class="tag" style="color:var(--vip);">VIP</span></div>
+        <div class="card vip-card vip-lock" data-cat="vip" onclick="openTool('fakepaypal')"><i class="fa-solid fa-lock lock-icon"></i><i class="fa-brands fa-paypal main-icon"></i><h3>Fake PayPal</h3><p>Transfer</p><span class="tag" style="color:var(--vip);">VIP</span></div>
+        <div class="card vip-card vip-lock" data-cat="vip" onclick="openTool('fakeshopee')"><i class="fa-solid fa-lock lock-icon"></i><i class="fa-solid fa-bag-shopping main-icon"></i><h3>Fake Shopee</h3><p>Pesanan</p><span class="tag" style="color:var(--vip);">VIP</span></div>
+        <div class="card vip-card vip-lock" data-cat="vip" onclick="openTool('fakenetflix')"><i class="fa-solid fa-lock lock-icon"></i><i class="fa-solid fa-film main-icon"></i><h3>Fake Netflix</h3><p>Profil</p><span class="tag" style="color:var(--vip);">VIP</span></div>
+        <div class="card vip-card vip-lock" data-cat="vip" onclick="openTool('fakespotify')"><i class="fa-solid fa-lock lock-icon"></i><i class="fa-brands fa-spotify main-icon"></i><h3>Fake Spotify</h3><p>Now Playing</p><span class="tag" style="color:var(--vip);">VIP</span></div>
+        <div class="card vip-card vip-lock" data-cat="vip" onclick="openTool('fakegopay')"><i class="fa-solid fa-lock lock-icon"></i><i class="fa-solid fa-wallet main-icon"></i><h3>Fake GoPay</h3><p>Saldo</p><span class="tag" style="color:var(--vip);">VIP</span></div>
+        <div class="card vip-card vip-lock" data-cat="vip" onclick="openTool('fakeovo')"><i class="fa-solid fa-lock lock-icon"></i><i class="fa-solid fa-wallet main-icon"></i><h3>Fake OVO</h3><p>Saldo</p><span class="tag" style="color:var(--vip);">VIP</span></div>
+        <div class="card vip-card vip-lock" data-cat="vip" onclick="openTool('fakesteam')"><i class="fa-solid fa-lock lock-icon"></i><i class="fa-brands fa-steam main-icon"></i><h3>Fake Steam</h3><p>Profil</p><span class="tag" style="color:var(--vip);">VIP</span></div>
+        <div class="card vip-card vip-lock" data-cat="vip" onclick="openTool('fakecrypto')"><i class="fa-solid fa-lock lock-icon"></i><i class="fa-brands fa-bitcoin main-icon"></i><h3>Fake Crypto</h3><p>Wallet</p><span class="tag" style="color:var(--vip);">VIP</span></div>
     </div>
 
-    <!-- VVIP -->
+    <!-- VVIP TOOLS -->
     <div class="section-title" data-cat="vvip" style="color:var(--vvip); border-color:rgba(255,0,85,0.3);"><i class="fa-solid fa-syringe"></i> VVIP Tools</div>
     <div class="grid">
         <div class="card vvip-card vip-lock" data-cat="vvip" onclick="openTool('realtracker')"><i class="fa-solid fa-lock lock-icon"></i><i class="fa-solid fa-crosshairs main-icon"></i><h3>Real Tracker</h3><p>IP & GPS</p><span class="tag" style="color:var(--vvip);">VVIP</span></div>
         <div class="card vvip-card vip-lock" data-cat="vvip" onclick="openTool('bugwareal')"><i class="fa-solid fa-lock lock-icon"></i><i class="fa-brands fa-whatsapp main-icon"></i><h3>Bug WA Real</h3><p>Flood/Crash</p><span class="tag" style="color:var(--vvip);">VVIP</span></div>
         <div class="card vvip-card vip-lock" data-cat="vvip" onclick="openTool('genapk')"><i class="fa-solid fa-lock lock-icon"></i><i class="fa-brands fa-android main-icon"></i><h3>Real APK RAT</h3><p>Sadap</p><span class="tag" style="color:var(--vvip);">VVIP</span></div>
+        <div class="card vip-card vip-lock" data-cat="vip" onclick="openTool('promptai')"><i class="fa-solid fa-lock lock-icon"></i><i class="fa-solid fa-robot main-icon"></i><h3>Prompt AI</h3><p>Generator</p><span class="tag" style="color:var(--vvip);">VVIP</span></div>
+        <div class="card vip-card vip-lock" data-cat="vip" onclick="openTool('kazeai')"><i class="fa-solid fa-lock lock-icon"></i><i class="fa-solid fa-robot main-icon"></i><h3>Kaze AI</h3><p>Chat AI</p><span class="tag" style="color:var(--vvip);">VVIP</span></div>
     </div>
 
-    <!-- GAME -->
+    <!-- GAME TOOLS -->
     <div class="section-title" data-cat="game"><i class="fa-solid fa-gamepad"></i> Game Tools</div>
     <div class="grid">
         <div class="card" data-cat="game" onclick="openTool('fakelobbyml')"><i class="fa-solid fa-gamepad main-icon"></i><h3>Fake ML Lobby</h3><p>Lobby</p><span class="tag">GAME</span></div>
@@ -164,7 +179,7 @@
         </div>
 
         <div style="font-size: 12px; font-weight: bold; color: var(--accent); margin-top: 10px;">Info & Support</div>
-        <a href="https://whatsapp.com/channel/0029Va5M9p6q7r8s9t0u1v2w" target="_blank" class="menu-item">
+        <a href="https://whatsapp.com/channel/0029Vb93P22IXnm00tpAg43J" target="_blank" class="menu-item">
             <i class="fa-brands fa-whatsapp" style="color:#25D366;"></i>
             <div><h4>Join Saluran</h4><p style="font-size:10px;color:#888;">Update Fitur</p></div>
         </a>
@@ -199,7 +214,7 @@
     <div id="toast"></div>
     <audio id="bg-music" loop></audio>
 
-    <!-- HIDDEN CAPTURES UNTUK FITUR FAKE -->
+    <!-- HIDDEN CAPTURES UNTUK FAKE -->
     <div id="capture-ios" class="hidden-captures" style="height: 800px; background: #000; font-family: -apple-system, sans-serif; color: #fff; padding: 20px;">
         <div style="text-align: center; margin-top: 30px;">
             <div style="font-size: 16px;">Sabtu, 11 Maret</div>
@@ -321,40 +336,70 @@
             }
 
             const tools = {
-                fakeiosnotif: `<i class="fa-solid fa-xmark modal-close" onclick="closeTool()"></i><h2>Fake iOS Notif</h2><p style="font-size:11px;color:#ffb800;margin-bottom:10px;">Generate notif iPhone.</p><input id="ios-msg" placeholder="Isi Pesan..."><button onclick="genIosNotif()">Generate</button><div id="ios-result" style="display:none;text-align:center;margin-top:16px;"><img id="ios-img" style="width:100%;border-radius:8px;"><a id="ios-dl" download="ios.png" style="display:block;margin-top:10px;color:#000;background:var(--vip);padding:10px;border-radius:8px;text-decoration:none;font-weight:bold;">Download</a></div>`,
-                
-                fakewacontext: `<i class="fa-solid fa-xmark modal-close" onclick="closeTool()"></i><h2>Fake WA Menu</h2><p style="font-size:11px;color:#ffb800;margin-bottom:10px;">Generate menu pop-up WA.</p><input id="ctx-name" placeholder="Isi Pesan..."><button onclick="genWaContext()">Generate</button><div id="ctx-result" style="display:none;text-align:center;margin-top:16px;"><img id="ctx-img" style="width:100%;border-radius:8px;"><a id="ctx-dl" download="wa-menu.png" style="display:block;margin-top:10px;color:#000;background:var(--vip);padding:10px;border-radius:8px;text-decoration:none;font-weight:bold;">Download</a></div>`,
-                
+                // FAKE VIP
+                fakeiosnotif: `<i class="fa-solid fa-xmark modal-close" onclick="closeTool()"></i><h2>Fake iOS Notif</h2><input id="ios-msg" placeholder="Isi Pesan..."><button onclick="genIosNotif()">Generate</button><div id="ios-result" style="display:none;text-align:center;margin-top:16px;"><img id="ios-img" style="width:100%;border-radius:8px;"><a id="ios-dl" download="ios.png" style="display:block;margin-top:10px;color:#000;background:var(--vip);padding:10px;border-radius:8px;text-decoration:none;font-weight:bold;">Download</a></div>`,
+                fakewacontext: `<i class="fa-solid fa-xmark modal-close" onclick="closeTool()"></i><h2>Fake WA Menu</h2><input id="ctx-name" placeholder="Isi Pesan..."><button onclick="genWaContext()">Generate</button><div id="ctx-result" style="display:none;text-align:center;margin-top:16px;"><img id="ctx-img" style="width:100%;border-radius:8px;"><a id="ctx-dl" download="wa-menu.png" style="display:block;margin-top:10px;color:#000;background:var(--vip);padding:10px;border-radius:8px;text-decoration:none;font-weight:bold;">Download</a></div>`,
                 fakewa: `<i class="fa-solid fa-xmark modal-close" onclick="closeTool()"></i><h2>Fake WA Chat</h2><input id="wa-name" placeholder="Nama Target..."><input id="wa-msg" placeholder="Isi Pesan..."><button onclick="genFakeWa()">Generate</button><div id="fakewa-result" style="display:none;text-align:center;margin-top:16px;"><img id="fakewa-img" style="width:100%;border-radius:8px;"><a id="fakewa-dl" download="fakewa.png" style="display:block;margin-top:10px;color:#000;background:var(--vip);padding:10px;border-radius:8px;text-decoration:none;font-weight:bold;">Download</a></div>`,
-
                 fakebca: `<i class="fa-solid fa-xmark modal-close" onclick="closeTool()"></i><h2>Fake BCA</h2><input id="bca-target" placeholder="Nama Penerima..."><input id="bca-amount" placeholder="Nominal (1.000.000)"><button onclick="genFakeBca()">Generate</button><div id="fakebca-result" style="display:none;text-align:center;margin-top:16px;"><img id="fakebca-img" style="width:100%;border-radius:8px;"><a id="fakebca-dl" download="fakebca.png" style="display:block;margin-top:10px;color:#000;background:var(--vip);padding:10px;border-radius:8px;text-decoration:none;font-weight:bold;">Download</a></div>`,
-
                 dana: `<i class="fa-solid fa-xmark modal-close" onclick="closeTool()"></i><h2>Fake DANA</h2><input id="dana-merchant" placeholder="Merchant (QRISPAY)"><input id="dana-total" placeholder="Total (5.255)"><button onclick="genDana()">Generate</button><div id="dana-result" style="display:none;text-align:center;margin-top:16px;"><img id="dana-img" style="width:100%;max-width:250px;border-radius:8px;"><a id="dana-dl" download="dana.png" style="display:block;margin-top:10px;color:#000;background:var(--vip);padding:10px;border-radius:8px;text-decoration:none;font-weight:bold;">Download</a></div>`,
+                fakeigprofile: `<h2>Fake IG Profile</h2><p>UI form disiapkan. Eksekusi butuh backend.</p>`,
+                faketweet: `<h2>Fake Tweet</h2><p>UI form disiapkan. Eksekusi butuh backend.</p>`,
+                fakepaypal: `<h2>Fake PayPal</h2><p>UI form disiapkan. Eksekusi butuh backend.</p>`,
+                fakeshopee: `<h2>Fake Shopee</h2><p>UI form disiapkan. Eksekusi butuh backend.</p>`,
+                fakenetflix: `<h2>Fake Netflix</h2><p>UI form disiapkan. Eksekusi butuh backend.</p>`,
+                fakespotify: `<h2>Fake Spotify</h2><p>UI form disiapkan. Eksekusi butuh backend.</p>`,
+                fakegopay: `<h2>Fake GoPay</h2><p>UI form disiapkan. Eksekusi butuh backend.</p>`,
+                fakeovo: `<h2>Fake OVO</h2><p>UI form disiapkan. Eksekusi butuh backend.</p>`,
+                fakesteam: `<h2>Fake Steam</h2><p>UI form disiapkan. Eksekusi butuh backend.</p>`,
+                fakecrypto: `<h2>Fake Crypto</h2><p>UI form disiapkan. Eksekusi butuh backend.</p>`,
+                fakesms: `<h2>Fake SMS</h2><p>UI form disiapkan. Eksekusi butuh backend.</p>`,
+                fakewacall: `<h2>Fake WA Call</h2><p>UI form disiapkan. Eksekusi butuh backend.</p>`,
+                faketelegram: `<h2>Fake Telegram</h2><p>UI form disiapkan. Eksekusi butuh backend.</p>`,
+                fakegoogle: `<h2>Fake Google</h2><p>UI form disiapkan. Eksekusi butuh backend.</p>`,
+                fakediscord: `<h2>Fake Discord</h2><p>UI form disiapkan. Eksekusi butuh backend.</p>`,
 
-                yt: `<h2>YouTube Downloader</h2><p>Fitur ini butuh server Python (Flask) yang aktif untuk mengunduh video.</p>`,
-                tiktok: `<h2>TikTok Downloader</h2><p>Fitur ini butuh server Python (Flask) yang aktif.</p>`,
+                // VVIP
+                realtracker: `<h2>Real Tracker</h2><p>Butuh API Publik untuk menembak IP/GPS.</p>`,
+                bugwareal: `<h2>Bug WA Real</h2><p>Butuh server Node.js (Baileys) untuk menembak.</p>`,
+                genapk: `<h2>Real APK RAT</h2><p>Butuh server Metasploit untuk compile payload.</p>`,
+                promptai: `<h2>Prompt AI</h2><p>UI form disiapkan. Butuh API OpenAI.</p>`,
+                kazeai: `<h2>Kaze AI</h2><p>UI chat disiapkan. Butuh API g4f/server backend.</p>`,
+
+                // BASIC
+                yt: `<h2>YouTube Downloader</h2><p>Butuh server Python (yt-dlp) untuk mengunduh.</p>`,
+                tiktok: `<h2>TikTok Downloader</h2><p>Butuh server Python (yt-dlp) untuk mengunduh.</p>`,
+                ig: `<h2>Instagram Downloader</h2><p>Butuh server Python (yt-dlp) untuk mengunduh.</p>`,
+                fb: `<h2>Facebook Downloader</h2><p>Butuh server Python (yt-dlp) untuk mengunduh.</p>`,
+                ewallet: `<i class="fa-solid fa-xmark modal-close" onclick="closeTool()"></i><h2>E-Wallet QR</h2><input id="ew-in" placeholder="Nomor HP..."><button onclick="genQrString()">Generate</button><div id="ew-out" style="margin-top:15px;text-align:center;"></div>`,
+                wifi: `<i class="fa-solid fa-xmark modal-close" onclick="closeTool()"></i><h2>QR WiFi</h2><input id="wifi-ssid" placeholder="Nama WiFi..."><input id="wifi-pass" placeholder="Password..."><button onclick="genQrWifi()">Generate</button><div id="wifi-out" style="margin-top:15px;text-align:center;"></div>`,
+                brat: `<h2>BRAT Gen</h2><p>Butuh server Python (Pillow) untuk rendering.</p>`,
+                hdphoto: `<h2>Image HD</h2><p>Butuh server Python (Pillow) untuk resize.</p>`,
+                compress: `<h2>Compress IMG</h2><p>Butuh server Python (Pillow) untuk kompres.</p>`,
+                pdf: `<h2>Image to PDF</h2><p>Butuh server Python (Pillow) untuk konversi.</p>`,
                 hash: `<i class="fa-solid fa-xmark modal-close" onclick="closeTool()"></i><h2>Hash SHA-256</h2><input id="hash-in" placeholder="Teks..."><button onclick="genHash()">Generate</button><div id="hash-out" style="margin-top:10px;word-break:break-all;color:var(--accent);font-family:monospace;"></div>`,
                 b64: `<i class="fa-solid fa-xmark modal-close" onclick="closeTool()"></i><h2>Base64</h2><textarea id="b64-in" style="height:80px"></textarea><div class="btn-row" style="display:flex;gap:8px;"><button onclick="doB64('enc')">Encode</button><button onclick="doB64('dec')">Decode</button></div><div id="b64-out" style="margin-top:10px;word-break:break-all;color:var(--accent);font-family:monospace;"></div>`,
-                qrtext: `<i class="fa-solid fa-xmark modal-close" onclick="closeTool()"></i><h2>QR Text</h2><input id="qr-in" placeholder="Teks..."><button onclick="genQr()">Generate</button><div id="qr-out" style="margin-top:15px;text-align:center;"></div>`,
-                brat: `<h2>BRAT Gen</h2><p>Fitur ini butuh server Python (Flask) untuk rendering gambar.</p>`,
+                qrtext: `<i class="fa-solid fa-xmark modal-close" onclick="closeTool()"></i><h2>QR Text</h2><input id="qr-in" placeholder="Teks..."><button onclick="genQrText()">Generate</button><div id="qr-out" style="margin-top:15px;text-align:center;"></div>`,
                 calc: `<i class="fa-solid fa-xmark modal-close" onclick="closeTool()"></i><h2>Kalkulator</h2><input id="calc-in" placeholder="5 + 5"><button onclick="doCalc()">Hitung</button><div id="calc-out" style="margin-top:10px;font-size:20px;color:var(--accent);text-align:center;"></div>`,
-                caseconv: `<i class="fa-solid fa-xmark modal-close" onclick="closeTool()"></i><h2>Case Converter</h2><textarea id="case-in" style="height:80px"></textarea><button onclick="doCase()">Ubah ke Title Case</button><div id="case-out" style="margin-top:10px;color:var(--accent);"></div>`,
-                textrev: `<i class="fa-solid fa-xmark modal-close" onclick="closeTool()"></i><h2>Text Reverser</h2><textarea id="rev-in" style="height:80px"></textarea><button onclick="doRev()">Balik Teks</button><div id="rev-out" style="margin-top:10px;color:var(--accent);"></div>`,
-                fakelobbyml: `<h2>Fake ML Lobby</h2><p>Fitur ini butuh server Python (Flask).</p>`
+                
+                // GAME
+                fakelobbyml: `<h2>Fake ML Lobby</h2><p>UI form disiapkan. Butuh server Python.</p>`,
+                fakemlchat: `<h2>Fake ML Chat</h2><p>UI form disiapkan. Butuh server Python.</p>`,
+                fakemlprofile: `<h2>Fake ML Prof</h2><p>UI form disiapkan. Butuh server Python.</p>`,
+                faketerm: `<h2>Fake Terminal</h2><p>UI form disiapkan. Butuh server Python.</p>`
             };
 
             if(tools[id]) {
                 document.getElementById('tool-content').innerHTML = tools[id];
                 document.getElementById('tool-modal').style.display = 'flex';
             } else {
-                document.getElementById('tool-content').innerHTML = `<h2>${id}</h2><p>Fitur ini belum tersedia di demo statis.</p>`;
+                document.getElementById('tool-content').innerHTML = `<h2>${id}</h2><p>Fitur ini belum tersedia.</p>`;
                 document.getElementById('tool-modal').style.display = 'flex';
             }
         }
 
         function closeTool() { document.getElementById('tool-modal').style.display = 'none'; }
 
-        // Generators
+        // FUNGSI GENERATOR LOKAL
         function genIosNotif() {
             document.getElementById('ios-notif-msg').innerText = document.getElementById('ios-msg').value || 'Pesan...';
             const el = document.getElementById('capture-ios');
@@ -420,7 +465,7 @@
             }, 300);
         }
 
-        // Text tools
+        // TEXT & QR TOOLS
         async function genHash() {
             const t = document.getElementById('hash-in').value;
             const buf = await crypto.subtle.digest('SHA-256', new TextEncoder().encode(t));
@@ -431,24 +476,31 @@
             try { document.getElementById('b64-out').innerText = m==='enc' ? btoa(t) : atob(t); } 
             catch(e) { document.getElementById('b64-out').innerText = 'Format Error'; }
         }
-        function genQr() {
+        function genQrText() {
             const t = document.getElementById('qr-in').value;
             document.getElementById('qr-out').innerHTML = `<img src="https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=${encodeURIComponent(t)}" style="border-radius:8px;">`;
+        }
+        function genQrString() {
+            const t = document.getElementById('ew-in').value;
+            document.getElementById('ew-out').innerHTML = `<img src="https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=${encodeURIComponent(t)}" style="border-radius:8px;">`;
+        }
+        function genQrWifi() {
+            const s = document.getElementById('wifi-ssid').value;
+            const p = document.getElementById('wifi-pass').value;
+            const t = `WIFI:T:WPA;S:${s};P:${p};;`;
+            document.getElementById('wifi-out').innerHTML = `<img src="https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=${encodeURIComponent(t)}" style="border-radius:8px;">`;
         }
         function doCalc() {
             try { document.getElementById('calc-out').innerText = eval(document.getElementById('calc-in').value); }
             catch(e) { document.getElementById('calc-out').innerText = 'Error'; }
         }
-        function doCase() {
-            const t = document.getElementById('case-in').value;
-            document.getElementById('case-out').innerText = t.replace(/\w\S*/g, txt => txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase());
-        }
-        function doRev() {
-            document.getElementById('rev-out').innerText = document.getElementById('rev-in').value.split('').reverse().join('');
-        }
 
-        // Logika Musik
-        const tracks = ["https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3", "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-2.mp3"];
+        // Logika Musik (Lagu Barat Sedih)
+        const tracks = [
+            "https://cdn.pixabay.com/download/audio/2022/11/22/audio_4c5a7c4523.mp3?filename=sad-soul-chasing-a-feeling-115358.mp3",
+            "https://cdn.pixabay.com/download/audio/2022/10/25/audio_407881d4e3.mp3?filename=emotional-piano-124067.mp3",
+            "https://cdn.pixabay.com/download/audio/2022/08/04/audio_2d1e3a8e57.mp3?filename=merry-christmas-please-dont-call-114652.mp3"
+        ];
         let trackIndex = 0, isPlaying = false;
         const audio = document.getElementById('bg-music');
         const playBtn = document.getElementById('play-btn');
