@@ -1,0 +1,5 @@
+Flask
+qrcode
+Pillow
+yt-dlp
+g4f
