@@ -212,13 +212,19 @@
     </div>
 
     <script>
-        // 1. MATRIX BACKGROUND (Text Glow, Background Hitam)
+        // 1. MATRIX BACKGROUND (Hitam Pekat, Teks Glow)
         const canvas = document.getElementById('matrix-canvas');
         const ctx = canvas.getContext('2d');
-        canvas.width = window.innerWidth; canvas.height = window.innerHeight;
+        canvas.width = window.innerWidth; 
+        canvas.height = window.innerHeight;
         const chars = "01アイウエオカキクケコサシスセソタチツテトナニヌネノABCDEFGHIJKLMNOPQRSTUVWXYZ@#$%&*";
-        const fontSize = 16; const columns = canvas.width / fontSize; const drops = [];
-        for(let x = 0; x < columns; x++) drops[x] = 1;
+        const fontSize = 16; 
+        const columns = Math.floor(canvas.width / fontSize); 
+        const drops = [];
+        
+        for(let x = 0; x < columns; x++) {
+            drops[x] = Math.random() * canvas.height / fontSize; // Spawn acak biar gak numpuk
+        }
         
         function drawMatrix() {
             // Background Hitam Transparan (Bikin Efek Trail)
@@ -227,8 +233,8 @@
             
             // Teks Hijau Glow
             ctx.fillStyle = "#00ff41"; 
-            ctx.shadowBlur = 12;
-            ctx.shadowColor = "#00ff00";
+            ctx.shadowBlur = 8;
+            ctx.shadowColor = "#00ff41";
             ctx.font = fontSize + "px monospace";
             
             for(let i = 0; i < drops.length; i++) {
@@ -238,9 +244,9 @@
                 drops[i]++;
             }
         }
-        setInterval(drawMatrix, 35);
+        setInterval(drawMatrix, 50);
 
-        // 2. DATA FITUR (Basic banyak, VIP sedikit)
+        // 2. DATA FITUR
         const basicFeatures = [
             { name: "YT Downloader", icon: "fa-youtube", desc: "MP4/MP3" },
             { name: "TikTok DL", icon: "fa-tiktok", desc: "No WM" },
@@ -265,9 +271,9 @@
         ];
         
         let basicHtml = '';
-        // Generate 100 fitur basic dari list di atas
-        for (let i = 1; i <= 100; i++) {
-            const f = basicFeatures[(i - 1) % basicFeatures.length];
+        // Loop 100 fitur unik (bukan duplikat 1-20 doang)
+        for (let i = 0; i < 100; i++) {
+            const f = basicFeatures[i % basicFeatures.length];
             basicHtml += `
             <div class="card" data-cat="basic" onclick="openTool('${f.name}', 'basic', this)">
                 <i class="fa-solid ${f.icon} main-icon"></i>
@@ -571,7 +577,7 @@
             } else { 
                 audio.play().then(() => {
                     playBtn.className = 'fa-solid fa-pause';
-                }).catch(e => console.log("Audio error:", e));
+                }).catch(e => alert("Klik sekali lagi untuk memutar musik (kebijakan browser)."));
             }
             isPlaying = !isPlaying;
         }
