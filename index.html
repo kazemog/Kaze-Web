@@ -11,7 +11,6 @@
         * { box-sizing: border-box; margin: 0; padding: 0; }
         body { background: #000; color: var(--fg); font-family: 'Outfit', sans-serif; padding: 0 0 100px; margin: auto; min-height: 100vh; overflow-x: hidden; max-width: 1200px; }
         
-        /* MATRIX BACKGROUND */
         #matrix-canvas { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -1; opacity: 0.15; pointer-events: none; }
 
         .top-nav { display: flex; justify-content: space-between; align-items: center; padding: 12px 16px; background: rgba(5, 20, 5, 0.9); backdrop-filter: blur(10px); position: sticky; top: 0; z-index: 999; border-bottom: 1px solid var(--accent); box-shadow: 0 0 15px var(--accent-glow); }
@@ -57,7 +56,6 @@
         .side-menu.open { right: 0; }
         .menu-item { display: flex; align-items: center; gap: 12px; padding: 12px; background: rgba(0,255,0,0.05); border: 1px solid var(--border); border-radius: 12px; text-decoration: none; color: #fff; }
 
-        /* BUG DASHBOARD STYLES */
         .bug-panel { display: none; padding: 16px; background: #0a1a0a; border: 1px solid var(--accent); border-radius: 16px; margin: 16px; box-shadow: 0 0 20px var(--accent-glow); }
         .bug-input { width: 100%; padding: 15px; background: #000; border: 1px solid #444; border-radius: 12px; color: #fff; margin-bottom: 12px; outline: none; }
         .bug-btn { width: 100%; padding: 15px; background: var(--accent); border: none; border-radius: 50px; color: #000; font-weight: 900; font-size: 16px; cursor: pointer; margin-bottom: 10px; }
@@ -98,7 +96,7 @@
 
     <div class="tabs-container">
         <div class="tab active" onclick="setCat('all', this)">Semua</div>
-        <div class="tab" onclick="setCat('basic', this)">Basic (1000+)</div>
+        <div class="tab" onclick="setCat('basic', this)">Basic</div>
         <div class="tab" onclick="setCat('vip', this)">VIP</div>
         <div class="tab" onclick="setCat('vvip', this)">VVIP</div>
         <div class="tab" style="color:#ff3333; border-color:#ff3333;" onclick="showBugPanel(this)"><i class="fa-solid fa-bug"></i> BUG TOOLS</div>
@@ -175,7 +173,7 @@
         }
         setInterval(drawMatrix, 35);
 
-        // 2. DATA FITUR BENERAN
+        // 2. DATA FITUR (Basic Dikurangi, VIP Ditambah, VVIP Monetisasi)
         const basicFeatures = [
             { name: "Base64 Enc", icon: "fa-code" }, { name: "Base64 Dec", icon: "fa-code" },
             { name: "MD5 Hash", icon: "fa-hashtag" }, { name: "SHA1 Hash", icon: "fa-hashtag" },
@@ -187,13 +185,12 @@
             { name: "Word Count", icon: "fa-file-word" }, { name: "Case Upper", icon: "fa-font" },
             { name: "Case Lower", icon: "fa-font" }, { name: "Random Num", icon: "fa-dice" },
             { name: "Coin Flip", icon: "fa-coins" }, { name: "Dice Roll", icon: "fa-dice" },
-            { name: "Kalkulator", icon: "fa-calculator" }, { name: "QR Text", icon: "fa-qrcode" },
-            { name: "Password Gen", icon: "fa-key" }, { name: "UUID Gen", icon: "fa-fingerprint" }
+            { name: "Kalkulator", icon: "fa-calculator" }, { name: "QR Text", icon: "fa-qrcode" }
         ];
         
-        // Generator 1000 Fitur Basic (Biar penuh tanpa ngetik 1000 baris)
         let basicHtml = '';
-        for (let i = 1; i <= 1000; i++) {
+        // Generate 150 Fitur Basic aja (Rapi)
+        for (let i = 1; i <= 150; i++) {
             const f = basicFeatures[i % basicFeatures.length];
             basicHtml += `
             <div class="card" data-cat="basic" onclick="openTool('${f.name}')">
@@ -204,23 +201,40 @@
             </div>`;
         }
 
-        // VIP Features
-        const vipList = ["Fake WA", "Fake BCA", "Fake DANA", "Fake iOS", "Fake Telegram", "YT Downloader", "TikTok DL", "IG Downloader", "FB Downloader", "Image HD", "Compress IMG"];
+        // VIP Features (Lebih Banyak & Berguna)
+        const vipList = [
+            { name: "YT Downloader", icon: "fa-youtube", desc: "MP4/MP3" },
+            { name: "TikTok DL", icon: "fa-tiktok", desc: "No Watermark" },
+            { name: "IG Downloader", icon: "fa-instagram", desc: "Reels/Post" },
+            { name: "FB Downloader", icon: "fa-facebook", desc: "Video HD" },
+            { name: "Fake WA", icon: "fa-whatsapp", desc: "Chat Maker" },
+            { name: "Fake BCA", icon: "fa-building-columns", desc: "Struk Transfer" },
+            { name: "Fake DANA", icon: "fa-money-bill", desc: "Struk Transfer" },
+            { name: "Fake iOS Notif", icon: "fa-apple", desc: "Lockscreen" },
+            { name: "Fake Telegram", icon: "fa-telegram", desc: "Chat Maker" },
+            { name: "Image HD", icon: "fa-camera", desc: "Upscale 2x" },
+            { name: "Compress IMG", icon: "fa-compress", desc: "Kecilkan File" },
+            { name: "PDF Maker", icon: "fa-file-pdf", desc: "Img to PDF" },
+            { name: "IP Tracker", icon: "fa-crosshairs", desc: "Lacak IP" },
+            { name: "Web Pinger", icon: "fa-globe", desc: "Cek Status" }
+        ];
         let vipHtml = '';
         vipList.forEach(f => {
             vipHtml += `
-            <div class="card vip-lock" data-cat="vip" onclick="openTool('${f}')">
+            <div class="card vip-lock" data-cat="vip" onclick="openTool('${f.name}')">
                 <i class="fa-solid fa-lock lock-icon"></i>
-                <i class="fa-solid fa-crown main-icon" style="color:#ffb800;"></i>
-                <h3>${f}</h3>
-                <p>Premium Tool</p>
+                <i class="fa-brands ${f.icon} main-icon" style="color:#ffb800;"></i>
+                <h3>${f.name}</h3>
+                <p>${f.desc}</p>
                 <span class="tag" style="color:#ffb800; border:1px solid #ffb800;">VIP</span>
             </div>`;
         });
 
-        // VVIP Features (Cuma 2 Sesuai Perintah)
+        // VVIP Features (Monetisasi / Penghasil Uang)
         const vvipList = [
-            { name: "NOKOS (Telegram)", icon: "fa-telegram", desc: "Nomor Kosong Unlimited" },
+            { name: "NOKOS Unlimited", icon: "fa-telegram", desc: "Nomor Virtual Murah" },
+            { name: "SMM Panel", icon: "fa-chart-line", desc: "Booster Sosmed" },
+            { name: "Premium AI", icon: "fa-robot", desc: "GPT-4 / Midjourney" },
             { name: "Bug WA Real", icon: "fa-bug", desc: "Server Crash Engine" }
         ];
         let vvipHtml = '';
@@ -228,7 +242,7 @@
             vvipHtml += `
             <div class="card vip-lock" data-cat="vvip" onclick="openTool('${f.name}')">
                 <i class="fa-solid fa-lock lock-icon"></i>
-                <i class="fa-brands ${f.icon} main-icon" style="color:#ff0055;"></i>
+                <i class="fa-solid ${f.icon} main-icon" style="color:#ff0055;"></i>
                 <h3>${f.name}</h3>
                 <p>${f.desc}</p>
                 <span class="tag" style="color:#ff0055; border:1px solid #ff0055;">VVIP</span>
@@ -238,13 +252,13 @@
         // Render ke HTML
         const container = document.getElementById('features-container');
         container.innerHTML = `
-            <div class="section-title" data-cat="basic" style="color:#00ff00; border-color:rgba(0,255,0,0.3);"><i class="fa-solid fa-shapes"></i> Basic Tools (1000+)</div>
+            <div class="section-title" data-cat="basic" style="color:#00ff00; border-color:rgba(0,255,0,0.3);"><i class="fa-solid fa-shapes"></i> Basic Tools</div>
             <div class="grid">${basicHtml}</div>
             
             <div class="section-title" data-cat="vip" style="color:#ffb800; border-color:rgba(255,184,0,0.3);"><i class="fa-solid fa-crown"></i> VIP Tools</div>
             <div class="grid">${vipHtml}</div>
             
-            <div class="section-title" data-cat="vvip" style="color:#ff0055; border-color:rgba(255,0,85,0.3);"><i class="fa-solid fa-syringe"></i> VVIP Tools (Eksklusif)</div>
+            <div class="section-title" data-cat="vvip" style="color:#ff0055; border-color:rgba(255,0,85,0.3);"><i class="fa-solid fa-syringe"></i> VVIP Tools (Money Maker)</div>
             <div class="grid">${vvipHtml}</div>
         `;
 
@@ -295,14 +309,39 @@
                 showBugPanel(document.querySelector('.tab[onclick="showBugPanel(this)"]'));
                 return;
             }
-            if(name === "NOKOS (Telegram)") {
+            
+            if(name === "NOKOS Unlimited") {
                 document.getElementById('tool-modal').style.display = 'flex';
                 document.getElementById('tool-modal').innerHTML = `
                     <div class="modal-content">
                         <i class="fa-solid fa-xmark modal-close" onclick="document.getElementById('tool-modal').style.display='none'"></i>
-                        <h2 style="text-align:center;">NOKOS TELEGRAM</h2>
-                        <p style="text-align:center; font-size:12px; color:#aaa; margin-bottom:20px;">Dapatkan nomor kosong unlimited via Bot Telegram.</p>
+                        <h2 style="text-align:center; color:#25D366;">NOKOS TELEGRAM</h2>
+                        <p style="text-align:center; font-size:12px; color:#aaa; margin-bottom:20px;">Beli nomor virtual murah untuk verifikasi WA/TG.</p>
                         <a href="https://t.me/kazenokosbot" target="_blank" style="display:block; text-align:center; background:#25D366; color:#fff; padding:15px; border-radius:10px; text-decoration:none; font-weight:bold;">BUKA BOT TELEGRAM</a>
+                    </div>`;
+                return;
+            }
+
+            if(name === "SMM Panel") {
+                document.getElementById('tool-modal').style.display = 'flex';
+                document.getElementById('tool-modal').innerHTML = `
+                    <div class="modal-content">
+                        <i class="fa-solid fa-xmark modal-close" onclick="document.getElementById('tool-modal').style.display='none'"></i>
+                        <h2 style="text-align:center; color:#00f0ff;">SMM PANEL</h2>
+                        <p style="text-align:center; font-size:12px; color:#aaa; margin-bottom:20px;">Boost Followers, Likes, Views IG/TikTok.</p>
+                        <a href="#" target="_blank" style="display:block; text-align:center; background:#00f0ff; color:#000; padding:15px; border-radius:10px; text-decoration:none; font-weight:bold;">BUKA DASHBOARD PANEL</a>
+                    </div>`;
+                return;
+            }
+
+            if(name === "Premium AI") {
+                document.getElementById('tool-modal').style.display = 'flex';
+                document.getElementById('tool-modal').innerHTML = `
+                    <div class="modal-content">
+                        <i class="fa-solid fa-xmark modal-close" onclick="document.getElementById('tool-modal').style.display='none'"></i>
+                        <h2 style="text-align:center; color:#ff0055;">PREMIUM AI</h2>
+                        <p style="text-align:center; font-size:12px; color:#aaa; margin-bottom:20px;">Akses GPT-4, Claude 3, Midjourney API.</p>
+                        <button onclick="alert('Hubungi Admin untuk API Key')" style="background:#ff0055; color:#fff;">BELI API KEY</button>
                     </div>`;
                 return;
             }
