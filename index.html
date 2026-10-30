@@ -12,16 +12,18 @@
         * { box-sizing: border-box; margin: 0; padding: 0; }
         body { background-color: #000000 !important; color: var(--fg); font-family: 'Outfit', sans-serif; padding: 0 0 100px; margin: auto; min-height: 100vh; overflow-x: hidden; max-width: 1200px; position: relative; }
         
-        /* MATRIX BACKGROUND */
+        /* MATRIX BACKGROUND UTAMA */
         #matrix-canvas { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -2; pointer-events: none; background: #000; }
 
-        /* POP-UP OVERLAY (REDUPIN LAYAR) */
-        #popup-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.8); backdrop-filter: blur(5px); z-index: 9999998; display: none; opacity: 0; transition: opacity 0.3s ease; }
+        /* POP-UP OVERLAY */
+        #popup-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.8); backdrop-filter: blur(8px); z-index: 9999998; display: none; opacity: 0; transition: opacity 0.3s ease; }
         #popup-overlay.show { display: block; opacity: 1; }
 
-        /* POP-UP KOTAK MEMBULAT */
-        #top-popup { position: fixed; top: 20px; left: 50%; transform: translate(-50%, -200%); width: 90%; max-width: 400px; background: #0a1a0a; border: 2px solid var(--accent); border-radius: 20px; z-index: 9999999; transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); padding: 20px; text-align: center; box-shadow: 0 10px 30px rgba(0,255,0,0.3); }
-        #top-popup.show { transform: translate(-50%, 0); }
+        /* POP-UP CARD (MODERN GLASSMORPHISM) */
+        #top-popup { position: fixed; top: 50%; left: 50%; transform: translate(-50%, -40%) scale(0.9); width: 85%; max-width: 380px; background: rgba(10, 25, 10, 0.85); backdrop-filter: blur(15px); -webkit-backdrop-filter: blur(15px); border: 1px solid rgba(0, 255, 0, 0.4); border-radius: 24px; z-index: 9999999; transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); padding: 30px 24px; text-align: center; box-shadow: 0 15px 35px rgba(0,0,0,0.5), 0 0 20px rgba(0,255,0,0.2); opacity: 0; visibility: hidden; }
+        #top-popup.show { transform: translate(-50%, -50%) scale(1); opacity: 1; visibility: visible; }
+        .popup-close-btn { position: absolute; top: 16px; right: 16px; background: rgba(255,255,255,0.1); border: none; color: #fff; width: 32px; height: 32px; border-radius: 50%; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: 0.2s; }
+        .popup-close-btn:hover { background: rgba(255,0,0,0.5); }
 
         .floating-wa { position: fixed; bottom: 20px; right: 20px; background: #00ff00; color: #000; width: 60px; height: 60px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 28px; box-shadow: 0 4px 15px rgba(0, 255, 0, 0.5); z-index: 9999; text-decoration: none; transition: 0.3s; }
         .floating-wa:hover { transform: scale(1.1); background: #00cc00; }
@@ -35,19 +37,21 @@
         
         .menu-btn { background: transparent; border: none; color: var(--accent); font-size: 20px; cursor: pointer; z-index: 1000; }
         
-        .banner { width: 100%; height: 160px; position: relative; border-bottom: 1px solid var(--accent); overflow: hidden; }
-        .banner video { width: 100%; height: 100%; object-fit: cover; opacity: 0.7; }
-        .banner-text { position: absolute; bottom: 12px; left: 16px; font-size: 24px; font-weight: 800; font-style: italic; color: var(--accent); }
+        /* BANNER DENGAN MATRIX TEXT */
+        .banner { width: 100%; height: 180px; position: relative; border-bottom: 1px solid var(--accent); overflow: hidden; }
+        .banner video { width: 100%; height: 100%; object-fit: cover; opacity: 0.4; }
+        #matrix-banner { position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 1; pointer-events: none; opacity: 0.8; }
+        .banner-text { position: absolute; bottom: 12px; left: 16px; font-size: 24px; font-weight: 800; font-style: italic; color: var(--accent); z-index: 2; text-shadow: 0 0 10px #000; }
         .banner-text span { display: block; font-size: 10px; font-style: normal; color: #fff; letter-spacing: 2px; }
 
-        .profile-card { margin: -20px 16px 16px; position: relative; z-index: 10; background: #0a1a0a; border: 1px solid var(--accent); border-radius: 16px; padding: 12px; display: flex; align-items: center; gap: 12px; cursor: pointer; }
+        .profile-card { margin: -20px 16px 16px; position: relative; z-index: 10; background: #0a1a0a; border: 1px solid var(--accent); border-radius: 16px; padding: 12px; display: flex; align-items: center; gap: 12px; cursor: pointer; box-shadow: 0 5px 15px rgba(0,0,0,0.5); }
         .profile-avatar { width: 45px; height: 45px; border-radius: 50%; background: rgba(0,255,0,0.1); display: flex; align-items: center; justify-content: center; font-size: 20px; color: var(--accent); border: 1px solid var(--accent); }
         .profile-info { flex: 1; }
         .profile-info .stats { display: flex; gap: 8px; font-size: 10px; color: var(--sub); margin-bottom: 4px; }
         .role-badge { background: rgba(255,255,255,0.1); color: #ccc; padding: 2px 8px; border-radius: 4px; font-size: 9px; font-weight: 600; border: 1px solid #555; }
 
         .tabs-container { padding: 0 16px 16px; overflow-x: auto; display: flex; gap: 8px; scrollbar-width: none; }
-        .tab { background: transparent; border: 1px solid var(--border); border-radius: 99px; padding: 8px 16px; font-size: 12px; font-weight: 600; white-space: nowrap; color: var(--sub); cursor: pointer; }
+        .tab { background: transparent; border: 1px solid var(--border); border-radius: 99px; padding: 8px 16px; font-size: 12px; font-weight: 600; white-space: nowrap; color: var(--sub); cursor: pointer; transition: 0.2s; }
         .tab.active { background: var(--accent); color: #000; border-color: transparent; font-weight: 800; }
 
         .section-title { padding: 0 16px; margin-bottom: 12px; font-size: 16px; font-weight: 600; display: flex; align-items: center; gap: 8px; color: var(--accent); border-bottom: 1px solid var(--border); padding-bottom: 5px; margin-top: 20px; }
@@ -87,11 +91,14 @@
 <body>
     <canvas id="matrix-canvas"></canvas>
 
+    <!-- POPUP OVERLAY & CARD -->
     <div id="popup-overlay" onclick="closePopup()"></div>
     <div id="top-popup">
-        <h3 style="color: #fff; margin-bottom: 10px;">Gabung Saluran WhatsApp Kaze</h3>
-        <a href="https://whatsapp.com/channel/0029Vb93P22IXnm00tpAg43J" target="_blank" style="background: #25D366; color: #fff; padding: 10px 20px; border-radius: 8px; text-decoration: none; font-weight: bold; display: inline-block;">Buka Saluran</a>
-        <button onclick="closePopup()" style="background: transparent; border: 1px solid #444; color: #888; padding: 10px; border-radius: 8px; width: 100%; margin-top: 10px; cursor: pointer;">TUTUP</button>
+        <button class="popup-close-btn" onclick="closePopup()"><i class="fa-solid fa-xmark"></i></button>
+        <i class="fa-brands fa-whatsapp" style="font-size: 50px; color: #25D366; margin-bottom: 15px; text-shadow: 0 0 15px rgba(37,211,102,0.5);"></i>
+        <h3 style="color: #fff; margin-bottom: 8px; font-size: 20px;">Saluran WhatsApp</h3>
+        <p style="font-size: 13px; color: #aaa; margin-bottom: 20px;">Dapatkan update fitur terbaru dan info penting dari Kaze.</p>
+        <a href="https://whatsapp.com/channel/0029Vb93P22IXnm00tpAg43J" target="_blank" style="background: #25D366; color: #fff; padding: 14px 20px; border-radius: 12px; text-decoration: none; font-weight: bold; display: block; box-shadow: 0 4px 15px rgba(37,211,102,0.4);">Buka Saluran</a>
     </div>
 
     <a href="https://wa.me/6285833277934" target="_blank" class="floating-wa">
@@ -104,13 +111,15 @@
             <i class="fa-solid fa-backward-step" onclick="prevTrack()"></i>
             <i class="fa-solid fa-play" id="play-btn" onclick="togglePlay()"></i>
             <i class="fa-solid fa-forward-step" onclick="nextTrack()"></i>
-            <span class="music-title" id="music-title">Sad Lofi</span>
+            <span class="music-title" id="music-title">Lofi</span>
         </div>
         <button class="menu-btn" onclick="document.getElementById('side-menu').classList.add('open')"><i class="fa-solid fa-bars"></i></button>
     </div>
 
+    <!-- BANNER DENGAN MATRIX -->
     <div class="banner">
         <video autoplay loop muted playsinline><source src="banner.mp4" type="video/mp4"></video>
+        <canvas id="matrix-banner"></canvas>
         <div class="banner-text">MORALES TOOLS<span>BY KAZE</span></div>
     </div>
 
@@ -124,10 +133,10 @@
 
     <div class="tabs-container">
         <div class="tab active" onclick="setCat('all', this)">Semua</div>
-        <div class="tab" onclick="setCat('basic', this)">Basic</div>
-        <div class="tab" onclick="setCat('vip', this)">VIP</div>
-        <div class="tab" onclick="setCat('vvip', this)">VVIP</div>
-        <div class="tab" style="color:#ff3333; border-color:#ff3333;" onclick="showBugPanel(this)"><i class="fa-solid fa-bug"></i> BUG TOOLS</div>
+        <div class="tab" onclick="setCat('download', this)">Downloader</div>
+        <div class="tab" onclick="setCat('tools', this)">Tools</div>
+        <div class="tab" onclick="setCat('fake', this)">Fake Maker</div>
+        <div class="tab" style="color:#ff3333; border-color:#ff3333;" onclick="showBugPanel(this)"><i class="fa-solid fa-bug"></i> BUG VIP</div>
     </div>
 
     <div id="bug-panel" class="bug-panel">
@@ -222,7 +231,7 @@
     </div>
 
     <script>
-        // 1. BACKGROUND HITAM PEKAT & TEXT GLOW
+        // --- 1. MATRIX BACKGROUND UTAMA ---
         const canvas = document.getElementById('matrix-canvas');
         const ctx = canvas.getContext('2d');
         canvas.width = window.innerWidth; 
@@ -232,19 +241,15 @@
         const columns = Math.floor(canvas.width / fontSize); 
         const drops = [];
         
-        for(let x = 0; x < columns; x++) {
-            drops[x] = Math.random() * canvas.height / fontSize; 
-        }
+        for(let x = 0; x < columns; x++) { drops[x] = Math.random() * canvas.height / fontSize; }
         
         function drawMatrix() {
             ctx.fillStyle = "rgba(0, 0, 0, 0.1)"; 
             ctx.fillRect(0, 0, canvas.width, canvas.height);
-            
             ctx.fillStyle = "#00ff41"; 
             ctx.shadowBlur = 10;
             ctx.shadowColor = "#00ff41";
             ctx.font = fontSize + "px monospace";
-            
             for(let i = 0; i < drops.length; i++) {
                 const text = chars[Math.floor(Math.random() * chars.length)];
                 ctx.fillText(text, i * fontSize, drops[i] * fontSize);
@@ -254,7 +259,32 @@
         }
         setInterval(drawMatrix, 50);
 
-        // 2. POPUP MUNCUL
+        // --- 2. MATRIX KHUSUS BANNER ---
+        const bCanvas = document.getElementById('matrix-banner');
+        const bCtx = bCanvas.getContext('2d');
+        bCanvas.width = bCanvas.offsetWidth;
+        bCanvas.height = bCanvas.offsetHeight;
+        const bColumns = Math.floor(bCanvas.width / fontSize);
+        const bDrops = [];
+        for(let x = 0; x < bColumns; x++) { bDrops[x] = Math.random() * bCanvas.height / fontSize; }
+        
+        function drawBannerMatrix() {
+            bCtx.fillStyle = "rgba(0, 0, 0, 0.1)"; 
+            bCtx.fillRect(0, 0, bCanvas.width, bCanvas.height);
+            bCtx.fillStyle = "#00ff41"; 
+            bCtx.shadowBlur = 5;
+            bCtx.shadowColor = "#00ff41";
+            bCtx.font = (fontSize - 2) + "px monospace";
+            for(let i = 0; i < bDrops.length; i++) {
+                const text = chars[Math.floor(Math.random() * chars.length)];
+                bCtx.fillText(text, i * (fontSize-2), bDrops[i] * (fontSize-2));
+                if(bDrops[i] * (fontSize-2) > bCanvas.height && Math.random() > 0.95) bDrops[i] = 0;
+                bDrops[i]++;
+            }
+        }
+        setInterval(drawBannerMatrix, 50);
+
+        // --- 3. POPUP LOGIC ---
         setTimeout(() => { openPopup(); }, 3000);
         function openPopup() {
             document.getElementById('popup-overlay').classList.add('show');
@@ -265,54 +295,48 @@
             document.getElementById('top-popup').classList.remove('show');
         }
 
-        // 3. DATA FITUR
+        // --- 4. DATA FITUR (DENGAN KATEGORI BARU) ---
         const basicFeatures = [
-            { name: "YT Downloader", icon: "fa-youtube", desc: "MP4/MP3" },
-            { name: "TikTok DL", icon: "fa-tiktok", desc: "No WM" },
-            { name: "IG Downloader", icon: "fa-instagram", desc: "Reels/Post" },
-            { name: "FB Downloader", icon: "fa-facebook", desc: "Video" },
-            { name: "Base64 Enc", icon: "fa-code", desc: "Encode" },
-            { name: "Base64 Dec", icon: "fa-code", desc: "Decode" },
-            { name: "Hash MD5", icon: "fa-hashtag", desc: "MD5" },
-            { name: "Hash SHA", icon: "fa-hashtag", desc: "SHA-256" },
-            { name: "Kalkulator", icon: "fa-calculator", desc: "Hitung" },
-            { name: "URL Encode", icon: "fa-link", desc: "URL" },
-            { name: "Text Rev", icon: "fa-rotate-left", desc: "Balik Teks" },
-            { name: "Temp Conv", icon: "fa-temperature-half", desc: "C to F" },
-            { name: "Length Conv", icon: "fa-ruler", desc: "M to Ft" },
-            { name: "Hex to RGB", icon: "fa-palette", desc: "Warna" },
-            { name: "Word Count", icon: "fa-file-word", desc: "Hitung Kata" },
-            { name: "Random Num", icon: "fa-dice", desc: "Angka Acak" },
-            { name: "Coin Flip", icon: "fa-coins", desc: "Lempar Koin" },
-            { name: "Dice Roll", icon: "fa-dice", desc: "Lempar Dadu" },
-            { name: "Pass Gen", icon: "fa-key", desc: "Sandi Kuat" },
-            { name: "QR Text", icon: "fa-qrcode", desc: "Bikin QR" }
+            { name: "YT Downloader", icon: "fa-youtube", desc: "MP4/MP3", cat: "download" },
+            { name: "TikTok DL", icon: "fa-tiktok", desc: "No WM", cat: "download" },
+            { name: "IG Downloader", icon: "fa-instagram", desc: "Reels", cat: "download" },
+            { name: "FB Downloader", icon: "fa-facebook", desc: "Video", cat: "download" },
+            { name: "Base64 Enc", icon: "fa-code", desc: "Encode", cat: "tools" },
+            { name: "Base64 Dec", icon: "fa-code", desc: "Decode", cat: "tools" },
+            { name: "Hash MD5", icon: "fa-hashtag", desc: "MD5", cat: "tools" },
+            { name: "Hash SHA", icon: "fa-hashtag", desc: "SHA-256", cat: "tools" },
+            { name: "Kalkulator", icon: "fa-calculator", desc: "Hitung", cat: "tools" },
+            { name: "URL Encode", icon: "fa-link", desc: "URL", cat: "tools" },
+            { name: "Text Rev", icon: "fa-rotate-left", desc: "Balik", cat: "tools" },
+            { name: "Temp Conv", icon: "fa-temperature-half", desc: "C to F", cat: "tools" },
+            { name: "Length Conv", icon: "fa-ruler", desc: "M to Ft", cat: "tools" },
+            { name: "Hex to RGB", icon: "fa-palette", desc: "Warna", cat: "tools" },
+            { name: "Word Count", icon: "fa-file-word", desc: "Kata", cat: "tools" },
+            { name: "Random Num", icon: "fa-dice", desc: "Angka", cat: "tools" }
         ];
         
         let basicHtml = '';
-        for (let i = 0; i < 100; i++) {
-            const f = basicFeatures[i % basicFeatures.length];
+        basicFeatures.forEach(f => {
             basicHtml += `
-            <div class="card" data-cat="basic" onclick="openTool('${f.name}', 'basic', this)">
+            <div class="card" data-cat="${f.cat}" onclick="openTool('${f.name}', '${f.cat}', this)">
                 <i class="fa-solid ${f.icon} main-icon"></i>
                 <h3>${f.name}</h3>
                 <p>${f.desc}</p>
-                <span class="tag">BASIC</span>
+                <span class="tag">${f.cat.toUpperCase()}</span>
             </div>`;
-        }
+        });
 
         const vipList = [
-            { name: "Fake WA", icon: "fa-whatsapp", desc: "Chat Maker" },
-            { name: "Kaze AI", icon: "fa-robot", desc: "Uncensored" },
-            { name: "Fake BCA", icon: "fa-building-columns", desc: "Struk" },
-            { name: "Fake DANA", icon: "fa-money-bill", desc: "Struk" },
-            { name: "Img Compress", icon: "fa-compress", desc: "Kecilkan" },
-            { name: "Img to PDF", icon: "fa-file-pdf", desc: "Gabung" }
+            { name: "Fake WA", icon: "fa-whatsapp", desc: "Chat Maker", cat: "fake" },
+            { name: "Fake BCA", icon: "fa-building-columns", desc: "Struk", cat: "fake" },
+            { name: "Fake DANA", icon: "fa-money-bill", desc: "Struk", cat: "fake" },
+            { name: "Img Compress", icon: "fa-compress", desc: "Kecilkan", cat: "tools" },
+            { name: "Img to PDF", icon: "fa-file-pdf", desc: "Gabung", cat: "tools" }
         ];
         let vipHtml = '';
         vipList.forEach(f => {
             vipHtml += `
-            <div class="card vip-lock" data-cat="vip" onclick="openTool('${f.name}', 'vip', this)">
+            <div class="card vip-lock" data-cat="${f.cat}" onclick="openTool('${f.name}', '${f.cat}', this)">
                 <i class="fa-solid fa-lock lock-icon"></i>
                 <i class="fa-brands ${f.icon} main-icon"></i>
                 <h3>${f.name}</h3>
@@ -322,15 +346,14 @@
         });
 
         const vvipList = [
-            { name: "NOKOS", icon: "fa-telegram", desc: "Nomor Virtual" },
-            { name: "SMM Panel", icon: "fa-chart-line", desc: "Booster" },
-            { name: "Premium AI", icon: "fa-robot", desc: "GPT-4" },
-            { name: "Bug WA", icon: "fa-bug", desc: "Server Crash" }
+            { name: "Kaze AI", icon: "fa-robot", desc: "Uncensored", cat: "tools" },
+            { name: "NOKOS", icon: "fa-telegram", desc: "Nomor Virtual", cat: "tools" },
+            { name: "SMM Panel", icon: "fa-chart-line", desc: "Booster", cat: "tools" }
         ];
         let vvipHtml = '';
         vvipList.forEach(f => {
             vvipHtml += `
-            <div class="card vip-lock" data-cat="vvip" onclick="openTool('${f.name}', 'vvip', this)">
+            <div class="card vip-lock" data-cat="${f.cat}" onclick="openTool('${f.name}', '${f.cat}', this)">
                 <i class="fa-solid fa-lock lock-icon"></i>
                 <i class="fa-solid ${f.icon} main-icon"></i>
                 <h3>${f.name}</h3>
@@ -340,15 +363,17 @@
         });
 
         document.getElementById('features-container').innerHTML = `
-            <div class="section-title" data-cat="basic"><i class="fa-solid fa-shapes"></i> Basic Tools (100+)</div>
-            <div class="grid">${basicHtml}</div>
-            <div class="section-title" data-cat="vip"><i class="fa-solid fa-crown"></i> VIP Tools</div>
-            <div class="grid">${vipHtml}</div>
-            <div class="section-title" data-cat="vvip"><i class="fa-solid fa-syringe"></i> VVIP Tools (Money Maker)</div>
-            <div class="grid">${vvipHtml}</div>
+            <div class="section-title" data-cat="download"><i class="fa-solid fa-download"></i> Downloader</div>
+            <div class="grid">${basicHtml.split('<!--SPLIT-->').filter(x=>x.includes('DOWNLOAD')).join('')}</div>
+            
+            <div class="section-title" data-cat="tools"><i class="fa-solid fa-toolbox"></i> Tools & Utils</div>
+            <div class="grid">${basicFeatures.filter(f=>f.cat==='tools').map(f=>`<div class="card" data-cat="${f.cat}" onclick="openTool('${f.name}', '${f.cat}', this)"><i class="fa-solid ${f.icon} main-icon"></i><h3>${f.name}</h3><p>${f.desc}</p><span class="tag">TOOLS</span></div>`).join('')}${vipList.filter(f=>f.cat==='tools').map(f=>`<div class="card vip-lock" data-cat="${f.cat}" onclick="openTool('${f.name}', '${f.cat}', this)"><i class="fa-solid fa-lock lock-icon"></i><i class="fa-brands ${f.icon} main-icon"></i><h3>${f.name}</h3><p>${f.desc}</p><span class="tag">VIP</span></div>`).join('')}${vvipList.filter(f=>f.cat==='tools').map(f=>`<div class="card vip-lock" data-cat="${f.cat}" onclick="openTool('${f.name}', '${f.cat}', this)"><i class="fa-solid fa-lock lock-icon"></i><i class="fa-solid ${f.icon} main-icon"></i><h3>${f.name}</h3><p>${f.desc}</p><span class="tag">VVIP</span></div>`).join('')}</div>
+
+            <div class="section-title" data-cat="fake"><i class="fa-solid fa-masks-theater"></i> Fake Maker</div>
+            <div class="grid">${vipList.filter(f=>f.cat==='fake').map(f=>`<div class="card vip-lock" data-cat="${f.cat}" onclick="openTool('${f.name}', '${f.cat}', this)"><i class="fa-solid fa-lock lock-icon"></i><i class="fa-brands ${f.icon} main-icon"></i><h3>${f.name}</h3><p>${f.desc}</p><span class="tag">VIP</span></div>`).join('')}</div>
         `;
 
-        // 4. LOGIC UI
+        // --- 5. LOGIC UI & FILTER ---
         let userTier = 'GUEST';
         function setTheme(theme) { document.body.setAttribute('data-theme', theme); }
         function setCat(cat, el) {
@@ -382,7 +407,7 @@
             } else { alert('Login Gagal!'); }
         }
 
-        // 5. FITUR JS JALAN
+        // --- 6. FITUR JS ---
         function openTool(name, cat, el) {
             if (el && el.classList.contains('vip-lock') && userTier !== 'VIP' && userTier !== 'VVIP' && userTier !== 'DEVELOPER') {
                 document.getElementById('vip-restrict').style.display = 'flex'; return;
@@ -390,13 +415,6 @@
             const content = document.getElementById('tool-content');
             const modal = document.getElementById('tool-modal');
             
-            if(name === "Bug WA") {
-                document.querySelectorAll('.tab').forEach(c => c.classList.remove('active'));
-                document.querySelector('.tab[onclick="showBugPanel(this)"]').classList.add('active');
-                showBugPanel(document.querySelector('.tab[onclick="showBugPanel(this)"]'));
-                return;
-            }
-
             if (name === "Kaze AI") {
                 content.innerHTML = `
                     <i class="fa-solid fa-xmark modal-close" onclick="document.getElementById('tool-modal').style.display='none'"></i>
@@ -408,7 +426,7 @@
                 modal.style.display = 'flex'; return;
             }
 
-            if (name === "YT Downloader" || name === "TikTok DL" || name === "IG Downloader" || name === "FB Downloader") {
+            if (name.includes("Downloader") || name.includes("DL")) {
                 content.innerHTML = `
                     <i class="fa-solid fa-xmark modal-close" onclick="document.getElementById('tool-modal').style.display='none'"></i>
                     <h2>${name}</h2>
@@ -476,7 +494,6 @@
             modal.style.display = 'flex';
         }
 
-        // --- LOGIKA FITUR ---
         async function downloadVideo() {
             const url = document.getElementById('dl-url').value;
             const res = document.getElementById('dl-res');
@@ -563,7 +580,6 @@
             }, 800);
         }
 
-        // BUG
         function doBugLogin() {
             if(document.getElementById('bug-user').value === 'Kaze Morales' && document.getElementById('bug-pass').value === 'KazeMorales1') {
                 document.getElementById('bug-login-view').style.display = 'none';
@@ -573,11 +589,11 @@
         function sendBug() { alert('Butuh app.py nyala buat nembak'); }
         function stopBug() { alert('Stop'); }
 
-        // --- MUSIC PLAYER ---
+        // --- 7. MUSIC PLAYER (FIXED LINK) ---
         const tracks = [
-            { title: "Sad Lofi", src: "https://cdn.pixabay.com/download/audio/2022/11/22/audio_4c5a7c4523.mp3" },
-            { title: "Cinderella (Cover)", src: "https://cdn.pixabay.com/download/audio/2022/10/25/audio_407881d4e3.mp3" },
-            { title: "Merry Christmas (Cover)", src: "https://cdn.pixabay.com/download/audio/2022/08/04/audio_2d1e3a8e57.mp3" }
+            { title: "Sad Lofi", src: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" },
+            { title: "Piano Chill", src: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-2.mp3" },
+            { title: "Deep Focus", src: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-3.mp3" }
         ];
         let trackIndex = 0, isPlaying = false;
         const audio = new Audio();
