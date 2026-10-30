@@ -11,7 +11,6 @@
         * { box-sizing: border-box; margin: 0; padding: 0; }
         body { background: #000; color: var(--fg); font-family: 'Outfit', sans-serif; padding: 0 0 100px; margin: auto; min-height: 100vh; overflow-x: hidden; max-width: 1200px; }
         
-        /* MATRIX RAIN */
         #matrix-canvas { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -1; opacity: 0.15; pointer-events: none; }
 
         .top-nav { display: flex; justify-content: space-between; align-items: center; padding: 12px 16px; background: rgba(5, 20, 5, 0.9); backdrop-filter: blur(10px); position: sticky; top: 0; z-index: 999; border-bottom: 1px solid var(--accent); box-shadow: 0 0 15px var(--accent-glow); }
@@ -33,7 +32,7 @@
         .tab { background: transparent; border: 1px solid var(--border); border-radius: 99px; padding: 8px 16px; font-size: 12px; font-weight: 600; white-space: nowrap; color: var(--sub); cursor: pointer; }
         .tab.active { background: var(--accent); color: #000; border-color: transparent; font-weight: 800; }
 
-        .section-title { padding: 0 16px; margin-bottom: 12px; font-size: 16px; font-weight: 600; display: flex; align-items: center; gap: 8px; color: var(--accent); border-bottom: 1px solid var(--border); padding-bottom: 5px; margin-top: 20px; text-shadow: 0 0 5px var(--accent); }
+        .section-title { padding: 0 16px; margin-bottom: 12px; font-size: 16px; font-weight: 600; display: flex; align-items: center; gap: 8px; color: var(--accent); border-bottom: 1px solid var(--border); padding-bottom: 5px; margin-top: 20px; }
         .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(130px, 1fr)); gap: 12px; padding: 0 16px; margin-bottom: 20px; }
         .card { background: var(--card-bg); border-radius: 16px; padding: 16px 10px; display: flex; flex-direction: column; align-items: center; text-align: center; position: relative; cursor: pointer; transition: 0.3s; backdrop-filter: blur(5px); border: 1px solid var(--border); overflow: hidden; }
         .card:hover { border-color: var(--accent); box-shadow: 0 0 20px var(--accent-glow); transform: translateY(-2px); }
@@ -41,7 +40,7 @@
         .card h3 { font-size: 12px; font-weight: 600; margin-bottom: 4px; color: #fff; }
         .card p { font-size: 9px; color: var(--sub); margin-bottom: 10px; }
         .tag { font-size: 8px; font-weight: 800; background: rgba(0,255,0,0.1); color: var(--accent); padding: 3px 8px; border-radius: 6px; }
-
+        
         .lock-icon { position: absolute; top: 10px; right: 10px; font-size: 16px; color: #ffb800; text-shadow: 0 0 5px #000; display: none; }
         .is-locked .lock-icon { display: block; }
         .is-locked { filter: grayscale(0.8); opacity: 0.6; }
@@ -56,6 +55,13 @@
         .side-menu { position: fixed; top: 0; right: -100%; width: 80%; max-width: 300px; height: 100%; background: #0a1a0a; border-left: 1px solid var(--accent); z-index: 999999; transition: 0.3s; padding: 24px; display: flex; flex-direction: column; gap: 16px; overflow-y: auto; }
         .side-menu.open { right: 0; }
         .menu-item { display: flex; align-items: center; gap: 12px; padding: 12px; background: rgba(0,255,0,0.05); border: 1px solid var(--border); border-radius: 12px; text-decoration: none; color: #fff; }
+
+        /* BUG DASHBOARD STYLES */
+        .bug-panel { display: none; padding: 16px; background: #0a1a0a; border: 1px solid var(--accent); border-radius: 16px; margin: 16px; box-shadow: 0 0 20px var(--accent-glow); }
+        .bug-input { width: 100%; padding: 15px; background: #000; border: 1px solid #444; border-radius: 12px; color: #fff; margin-bottom: 12px; outline: none; }
+        .bug-btn { width: 100%; padding: 15px; background: var(--accent); border: none; border-radius: 50px; color: #000; font-weight: 900; font-size: 16px; cursor: pointer; margin-bottom: 10px; }
+        .bug-stop { background: #ff3333; color: #fff; }
+        .bug-log { background: #000; border: 1px solid #333; border-radius: 12px; padding: 10px; font-family: monospace; font-size: 12px; color: var(--accent); height: 120px; overflow-y: auto; margin-top: 10px; }
     </style>
 </head>
 <body>
@@ -95,9 +101,34 @@
         <div class="tab" onclick="setCat('vip', this)">VIP</div>
         <div class="tab" onclick="setCat('vvip', this)">VVIP</div>
         <div class="tab" onclick="setCat('game', this)">Game</div>
+        <div class="tab" style="color:#ff3333; border-color:#ff3333;" onclick="showBugPanel(this)"><i class="fa-solid fa-bug"></i> BUG TOOLS</div>
     </div>
 
-    <!-- AREA 1000 FITUR -->
+    <!-- PANEL BUG (Tersembunyi, muncul kalau di tab BUG TOOLS) -->
+    <div id="bug-panel" class="bug-panel">
+        <!-- SIGN IN BUG -->
+        <div id="bug-login-view">
+            <h3 style="color:var(--accent); margin-bottom:15px; text-align:center;"><i class="fa-solid fa-lock"></i> SIGN IN VVIP ACCESS</h3>
+            <input type="text" id="bug-user" class="bug-input" placeholder="Username (Kaze Morales)">
+            <input type="password" id="bug-pass" class="bug-input" placeholder="Password">
+            <button class="bug-btn" onclick="doBugLogin()">MASUK</button>
+        </div>
+
+        <!-- DASHBOARD BUG -->
+        <div id="bug-dashboard-view" style="display:none;">
+            <h3 style="color:var(--accent); margin-bottom:15px;"><i class="fa-solid fa-terminal"></i> SERVER BUG ENGINE</h3>
+            <input type="text" id="targetNum" class="bug-input" placeholder="Nomor Target (628...)">
+            <select id="bugType" class="bug-input">
+                <option value="crash">Detective Crash (Invisible)</option>
+                <option value="freeze">Freeze Chat (Invisible)</option>
+            </select>
+            <button class="bug-btn" onclick="sendBug()">SEND BUG</button>
+            <button class="bug-btn bug-stop" onclick="stopBug()">STOP</button>
+            <div class="bug-log" id="bug-log">[SYSTEM] Ready...</div>
+        </div>
+    </div>
+
+    <!-- AREA FITUR UTAMA -->
     <div id="features-container"></div>
 
     <div class="side-menu" id="side-menu">
@@ -124,10 +155,6 @@
             <button onclick="doLogin()">MASUK</button>
             <button onclick="document.getElementById('login-modal').style.display='none'" style="background: transparent; border: 1px solid #444; color: #888;">TUTUP</button>
         </div>
-    </div>
-
-    <div class="modal-overlay" id="tool-modal">
-        <div class="modal-content" id="tool-content"></div>
     </div>
 
     <script>
@@ -166,13 +193,10 @@
         const icons = ["fa-youtube", "fa-tiktok", "fa-instagram", "fa-facebook", "fa-hashtag", "fa-code", "fa-qrcode", "fa-calculator", "fa-font", "fa-rotate-left", "fa-wand-magic-sparkles", "fa-camera", "fa-compress", "fa-file-pdf", "fa-robot", "fa-globe", "fa-user-secret", "fa-bug", "fa-crosshairs", "fa-wallet", "fa-phone", "fa-comment-sms", "fa-apple", "fa-telegram", "fa-google", "fa-discord", "fa-building-columns", "fa-money-bill", "fa-film", "fa-brands fa-spotify", "fa-steam", "fa-bitcoin"];
         
         let html = '';
-        
-        // Loop untuk bikin 1000 fitur (250 per kategori)
         Object.keys(categories).forEach(catKey => {
             const cat = categories[catKey];
             html += `<div class="section-title" data-cat="${catKey}" style="color:${cat.color}; border-color:${cat.color}40;"><i class="fa-solid ${cat.icon}"></i> ${cat.title} (250+)</div>`;
             html += `<div class="grid">`;
-            
             for (let i = 1; i <= 250; i++) {
                 const icon = icons[Math.floor(Math.random() * icons.length)];
                 const isLocked = catKey !== 'basic' ? 'vip-lock' : '';
@@ -191,15 +215,28 @@
 
         // --- 3. LOGIC UI ---
         let userTier = 'GUEST';
+        let isBugLoggedIn = false;
+        let activePhone = '';
+
         function setCat(cat, el) {
             document.querySelectorAll('.tab').forEach(c => c.classList.remove('active'));
             el.classList.add('active');
+            document.getElementById('bug-panel').style.display = 'none';
+            document.getElementById('features-container').style.display = 'block';
+            
             document.querySelectorAll('.section-title').forEach(title => {
                 title.style.display = (cat === 'all' || cat === title.getAttribute('data-cat')) ? 'flex' : 'none';
             });
             document.querySelectorAll('.card').forEach(card => {
                 card.style.display = (cat === 'all' || cat === card.getAttribute('data-cat')) ? 'flex' : 'none';
             });
+        }
+
+        function showBugPanel(el) {
+            document.querySelectorAll('.tab').forEach(c => c.classList.remove('active'));
+            el.classList.add('active');
+            document.getElementById('features-container').style.display = 'none';
+            document.getElementById('bug-panel').style.display = 'block';
         }
 
         function doLogin() {
@@ -217,18 +254,61 @@
             }
         }
 
-        function openTool(id) {
-            if (document.querySelector(`.card[onclick="openTool('${id}')"]`).classList.contains('vip-lock')) {
-                document.getElementById('vip-restrict').style.display = 'flex';
-                return;
+        // --- 4. BUG SIGN IN & DASHBOARD ---
+        function doBugLogin() {
+            const u = document.getElementById('bug-user').value;
+            const p = document.getElementById('bug-pass').value;
+            if(u === 'Kaze Morales' && p === 'KazeMorales1') {
+                isBugLoggedIn = true;
+                document.getElementById('bug-login-view').style.display = 'none';
+                document.getElementById('bug-dashboard-view').style.display = 'block';
+                logBug('Akses VVIP Diterima. Dashboard terbuka.');
+            } else {
+                alert('Akses Ditolak! Khusus VVIP.');
             }
-            document.getElementById('tool-content').innerHTML = `
-                <i class="fa-solid fa-xmark modal-close" onclick="document.getElementById('tool-modal').style.display='none'"></i>
-                <h2>${id}</h2>
-                <p style="color:#aaa; font-size:12px; margin-bottom:20px;">Fitur sedang dimuat dari server pusat...</p>
-                <button onclick="document.getElementById('tool-modal').style.display='none'">TUTUP</button>
-            `;
-            document.getElementById('tool-modal').style.display = 'flex';
+        }
+
+        function logBug(msg) {
+            const l = document.getElementById('bug-log');
+            l.innerHTML += `<br>[${new Date().toLocaleTimeString()}] ${msg}`;
+            l.scrollTop = l.scrollHeight;
+        }
+
+        // KONEKSI KE SERVER BUG LOKAL
+        // GANTI IP 192.168.1.44 DENGAN IP HP LO YANG JALANIN python app.py (Cek di Termux)
+        const BUG_SERVER = "http://192.168.1.44:5050"; 
+
+        async function sendBug() {
+            const target = document.getElementById('targetNum').value;
+            const type = document.getElementById('bugType').value;
+            if(!target) return alert('Isi target!');
+            
+            logBug('Menembak ' + target + ' pakai ' + type + '...');
+            try {
+                // Contoh kirim perintah ke server lokal (butuh server python nyala)
+                const res = await fetch(BUG_SERVER + '/api/send', { 
+                    method: 'POST', 
+                    headers: {'Content-Type': 'application/json'}, 
+                    body: JSON.stringify({phone: 'private', target: target, type: type}) 
+                });
+                const data = await res.json();
+                if(data.ok) logBug('SUKSES: ' + data.message);
+                else logBug('GAGAL: ' + data.error);
+            } catch(e) { logBug('ERROR: Server Offline / CORS Blocked.'); }
+        }
+
+        async function stopBug() {
+            logBug('Menghentikan proses...');
+            try {
+                const res = await fetch(BUG_SERVER + '/api/stop', { 
+                    method: 'POST', 
+                    headers: {'Content-Type': 'application/json'}, 
+                    body: JSON.stringify({phone: 'private'}) 
+                });
+                const data = await res.json();
+                if(data.ok) logBug('STOPPED!');
+                else logBug('GAGAL STOP: ' + data.error);
+            } catch(e) { logBug('ERROR: Server Offline.'); }
         }
     </script>
 </body>
