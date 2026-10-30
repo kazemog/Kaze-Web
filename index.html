@@ -12,14 +12,17 @@
         * { box-sizing: border-box; margin: 0; padding: 0; }
         body { background: #000; color: var(--fg); font-family: 'Outfit', sans-serif; padding: 0 0 100px; margin: auto; min-height: 100vh; overflow-x: hidden; max-width: 1200px; position: relative; }
         
-        /* MATRIX BG CANVAS */
+        /* BACKGROUND HITAM PEKAT */
         #matrix-canvas { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -2; pointer-events: none; background: #000; }
 
-        /* POP-UP ATAS */
-        #top-popup { position: fixed; top: -150px; left: 0; width: 100%; background: rgba(0, 0, 0, 0.95); border-bottom: 2px solid var(--accent); z-index: 9999999; transition: top 0.5s ease-in-out; padding: 15px; text-align: center; box-shadow: 0 5px 20px rgba(0,255,0,0.3); }
-        #top-popup.show { top: 0; }
+        /* POP-UP OVERLAY (REDUPIN LAYAR) */
+        #popup-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.75); backdrop-filter: blur(5px); z-index: 9999998; display: none; opacity: 0; transition: opacity 0.3s ease; }
+        #popup-overlay.show { display: block; opacity: 1; }
 
-        /* FLOATING BUTTON */
+        /* POP-UP KOTAK MEMBULAT */
+        #top-popup { position: fixed; top: 20px; left: 50%; transform: translate(-50%, -200%); width: 90%; max-width: 400px; background: #0a1a0a; border: 2px solid var(--accent); border-radius: 20px; z-index: 9999999; transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); padding: 20px; text-align: center; box-shadow: 0 10px 30px rgba(0,255,0,0.3); }
+        #top-popup.show { transform: translate(-50%, 0); }
+
         .floating-wa { position: fixed; bottom: 20px; right: 20px; background: #00ff00; color: #000; width: 60px; height: 60px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 28px; box-shadow: 0 4px 15px rgba(0, 255, 0, 0.5); z-index: 9999; text-decoration: none; transition: 0.3s; }
         .floating-wa:hover { transform: scale(1.1); background: #00cc00; }
 
@@ -84,10 +87,12 @@
 <body>
     <canvas id="matrix-canvas"></canvas>
 
+    <!-- POPUP OVERLAY & CARD -->
+    <div id="popup-overlay" onclick="closePopup()"></div>
     <div id="top-popup">
-        <span style="position: absolute; right: 15px; top: 10px; color: #ff3333; cursor: pointer; font-weight: bold; font-size: 20px;" onclick="document.getElementById('top-popup').classList.remove('show')">✕</span>
         <h3 style="color: #fff; margin-bottom: 10px;">Gabung Saluran WhatsApp Kaze</h3>
-        <a href="https://whatsapp.com/channel/0029Vb93P22IXnm00tpAg43J" target="_blank" style="background: #25D366; color: #fff; padding: 8px 20px; border-radius: 8px; text-decoration: none; font-weight: bold; display: inline-block;">Buka Saluran</a>
+        <a href="https://whatsapp.com/channel/0029Vb93P22IXnm00tpAg43J" target="_blank" style="background: #25D366; color: #fff; padding: 10px 20px; border-radius: 8px; text-decoration: none; font-weight: bold; display: inline-block;">Buka Saluran</a>
+        <button onclick="closePopup()" style="background: transparent; border: 1px solid #444; color: #888; padding: 10px; border-radius: 8px; width: 100%; margin-top: 10px; cursor: pointer;">TUTUP</button>
     </div>
 
     <a href="https://wa.me/6285833277934" target="_blank" class="floating-wa">
@@ -192,6 +197,9 @@
         <div class="modal-content" id="tool-content"></div>
     </div>
 
+    <!-- MUSIC IFRAME (HIDDEN) -->
+    <iframe id="sc-player" width="100%" height="0" scrolling="no" frameborder="no" allow="autoplay" style="display:none;"></iframe>
+
     <!-- HIDDEN CAPTURES -->
     <div id="capture-fakewa" class="hidden-captures" style="background:#efeae2; font-family:Arial; padding-bottom:20px;">
         <div style="background: #075E54; padding: 15px; color: white; display: flex; align-items: center; gap: 10px;"><i class="fa-solid fa-arrow-left"></i><div style="width: 35px; height: 35px; background: #ccc; border-radius: 50%;"></div><div><b id="fakewa-target-name">Budi</b><br><span style="font-size: 11px;">online</span></div></div>
@@ -218,7 +226,7 @@
     </div>
 
     <script>
-        // --- 1. MATRIX BACKGROUND (HITAM PEKAT & GLOW) ---
+        // 1. MATRIX BACKGROUND (Hitam Pekat)
         const canvas = document.getElementById('matrix-canvas');
         const ctx = canvas.getContext('2d');
         canvas.width = window.innerWidth; 
@@ -233,15 +241,12 @@
         }
         
         function drawMatrix() {
-            // Background Hitam Transparan (Efek Trail)
             ctx.fillStyle = "rgba(0, 0, 0, 0.1)"; 
             ctx.fillRect(0, 0, canvas.width, canvas.height);
             
-            // Teks Hijau Glow
             ctx.fillStyle = "#00ff41"; 
-            ctx.shadowBlur = 10;
-            ctx.shadowColor = "#00ff41";
             ctx.font = fontSize + "px monospace";
+            // Glow DIHAPUS dari canvas biar gak jadi ijo semua layarnya
             
             for(let i = 0; i < drops.length; i++) {
                 const text = chars[Math.floor(Math.random() * chars.length)];
@@ -252,12 +257,18 @@
         }
         setInterval(drawMatrix, 50);
 
-        // --- 2. POP-UP ATAS ---
+        // 2. POP-UP LOGIC
         setTimeout(() => {
+            document.getElementById('popup-overlay').classList.add('show');
             document.getElementById('top-popup').classList.add('show');
         }, 3000);
 
-        // --- 3. DATA FITUR ---
+        function closePopup() {
+            document.getElementById('popup-overlay').classList.remove('show');
+            document.getElementById('top-popup').classList.remove('show');
+        }
+
+        // 3. DATA FITUR
         const basicFeatures = [
             { name: "YT Downloader", icon: "fa-youtube", desc: "MP4/MP3" },
             { name: "TikTok DL", icon: "fa-tiktok", desc: "No WM" },
@@ -340,7 +351,7 @@
             <div class="grid">${vvipHtml}</div>
         `;
 
-        // 3. LOGIC UI
+        // 4. LOGIC UI
         let userTier = 'GUEST';
         function setTheme(theme) { document.body.setAttribute('data-theme', theme); }
         function setCat(cat, el) {
@@ -374,7 +385,7 @@
             } else { alert('Login Gagal!'); }
         }
 
-        // 4. FITUR BENERAN JALAN DI BROWSER
+        // 5. FITUR BENERAN JALAN DI BROWSER
         function openTool(name, cat, el) {
             if (el && el.classList.contains('vip-lock') && userTier !== 'VIP' && userTier !== 'VVIP' && userTier !== 'DEVELOPER') {
                 document.getElementById('vip-restrict').style.display = 'flex'; return;
@@ -459,11 +470,10 @@
                 modal.style.display = 'flex'; return;
             }
             
-            // Default Fallback
             content.innerHTML = `
                 <i class="fa-solid fa-xmark modal-close" onclick="document.getElementById('tool-modal').style.display='none'"></i>
                 <h2>${name}</h2>
-                <p style="text-align:center; color:#aaa;">Fitur ini butuh server backend Python untuk berjalan 100%.</p>
+                <p style="text-align:center; color:#aaa;">Fitur ini butuh server backend Python.</p>
                 <button onclick="document.getElementById('tool-modal').style.display='none'">TUTUP</button>
             `;
             modal.style.display = 'flex';
@@ -487,7 +497,7 @@
                 } else {
                     res.innerText = 'Gagal: ' + (data.text || 'Link tidak didukung.');
                 }
-            } catch(e) { res.innerText = 'Error koneksi ke API downloader.'; }
+            } catch(e) { res.innerText = 'Error koneksi ke API.'; }
         }
 
         function compressImg() {
@@ -566,44 +576,53 @@
         function sendBug() { alert('Butuh app.py nyala buat nembak'); }
         function stopBug() { alert('Stop'); }
 
-        // --- MUSIC (SAD POPULAR) ---
+        // --- MUSIC PLAYER (MAC MILLER & SAD POP) ---
+        // Menggunakan SoundCloud API untuk memutar lagu asli
         const tracks = [
-            { title: "Cinderella - Mac Miller", src: "https://cdn.pixabay.com/download/audio/2022/10/25/audio_407881d4e3.mp3" },
-            { title: "Merry Christmas Please Don't Call", src: "https://cdn.pixabay.com/download/audio/2022/11/22/audio_4c5a7c4523.mp3" },
-            { title: "Sad Piano Vibe", src: "https://cdn.pixabay.com/download/audio/2022/08/04/audio_2d1e3a8e57.mp3" }
+            { title: "Mac Miller - Cinderella", url: "https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/1374212710&color=%2300ff00&auto_play=true&hide_related=true&show_comments=false&show_user=true&show_reposts=false&show_teaser=false" },
+            { title: "Merry Christmas Please Don't Call", url: "https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/1173187059&color=%2300ff00&auto_play=true&hide_related=true&show_comments=false&show_user=true&show_reposts=false&show_teaser=false" },
+            { title: "Sad Lofi Mix", url: "https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/1503730754&color=%2300ff00&auto_play=true&hide_related=true&show_comments=false&show_user=true&show_reposts=false&show_teaser=false" }
         ];
-        let trackIndex = 0, isPlaying = false;
-        const audio = new Audio();
-        audio.src = tracks[trackIndex].src;
-        audio.volume = 0.5;
-        
-        const playBtn = document.getElementById('play-btn');
+        let trackIndex = 0;
+        const playerIframe = document.getElementById('sc-player');
         const musicTitle = document.getElementById('music-title');
-        musicTitle.innerText = tracks[trackIndex].title;
+        const playBtn = document.getElementById('play-btn');
+        let isPlaying = false;
+
+        function loadTrack(index) {
+            playerIframe.src = tracks[index].url;
+            musicTitle.innerText = tracks[index].title;
+        }
+        
+        // Load lagu pertama
+        loadTrack(trackIndex);
 
         function togglePlay() {
-            if(isPlaying) { 
-                audio.pause(); 
-                playBtn.className = 'fa-solid fa-play'; 
-            } else { 
-                audio.play().then(() => {
-                    playBtn.className = 'fa-solid fa-pause';
-                }).catch(e => alert("Klik sekali lagi untuk memutar musik (kebijakan browser)."));
+            if(isPlaying) {
+                // Pause tidak bisa di-control langsung lewat iframe tanpa API wrapper, 
+                // tapi kita bisa reload iframe buat stop (simulasi)
+                playerIframe.src = "";
+                playBtn.className = 'fa-solid fa-play';
+                isPlaying = false;
+            } else {
+                loadTrack(trackIndex);
+                playBtn.className = 'fa-solid fa-pause';
+                isPlaying = true;
             }
-            isPlaying = !isPlaying;
         }
-        
+
         function nextTrack() { 
             trackIndex = (trackIndex + 1) % tracks.length; 
-            audio.src = tracks[trackIndex].src; 
-            musicTitle.innerText = tracks[trackIndex].title; 
-            if(isPlaying) audio.play().catch(e => console.log(e)); 
+            loadTrack(trackIndex);
+            if(isPlaying) playBtn.className = 'fa-solid fa-pause';
+            else playBtn.className = 'fa-solid fa-play';
         }
+
         function prevTrack() { 
             trackIndex = (trackIndex - 1 + tracks.length) % tracks.length; 
-            audio.src = tracks[trackIndex].src; 
-            musicTitle.innerText = tracks[trackIndex].title; 
-            if(isPlaying) audio.play().catch(e => console.log(e)); 
+            loadTrack(trackIndex); 
+            if(isPlaying) playBtn.className = 'fa-solid fa-pause';
+            else playBtn.className = 'fa-solid fa-play';
         }
     </script>
 </body>
