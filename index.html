@@ -8,16 +8,24 @@
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&display=swap" rel="stylesheet">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
     <style>
-        :root { --bg: #000000; --card-bg: rgba(10, 25, 10, 0.85); --fg: #fff; --sub: #88aa88; --border: rgba(0, 255, 0, 0.2); --accent: #00ff00; --accent-glow: rgba(0, 255, 0, 0.5); }
+        :root { --bg: #000000; --card-bg: #0a1a0a; --fg: #fff; --sub: #88aa88; --border: rgba(0, 255, 0, 0.3); --accent: #00ff00; --accent-glow: rgba(0, 255, 0, 0.5); }
         * { box-sizing: border-box; margin: 0; padding: 0; }
-        body { background: var(--bg); color: var(--fg); font-family: 'Outfit', sans-serif; padding: 0 0 100px; margin: auto; min-height: 100vh; overflow-x: hidden; max-width: 1200px; position: relative; }
         
-        /* MATRIX BG CANVAS - BACKGROUND HITAM, TEKS GLOW */
-        #matrix-canvas { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -2; pointer-events: none; background: #000; }
+        /* BACKGROUND HITAM TOTAL */
+        body { background-color: #000000; color: var(--fg); font-family: 'Outfit', sans-serif; padding: 0 0 100px; margin: auto; min-height: 100vh; overflow-x: hidden; max-width: 1200px; position: relative; }
+        
+        /* CANVAS MATRIX: DI BELAKANG, TEKS GLOW */
+        #matrix-canvas { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -1; pointer-events: none; background: transparent; }
 
-        /* FLOATING WHATSAPP BUTTON */
-        .floating-wa { position: fixed; bottom: 20px; right: 20px; background: #25D366; color: #fff; width: 60px; height: 60px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 30px; box-shadow: 0 4px 15px rgba(37, 211, 102, 0.5); z-index: 9999; text-decoration: none; transition: 0.3s; }
-        .floating-wa:hover { transform: scale(1.1); }
+        /* POPUP DARI ATAS */
+        .top-popup { position: fixed; top: -150px; left: 0; width: 100%; background: #111; border-bottom: 2px solid var(--accent); color: #fff; text-align: center; padding: 15px; z-index: 99999; transition: top 0.5s ease-in-out; box-shadow: 0 5px 20px rgba(0,255,65,0.4); }
+        .top-popup.show { top: 0; }
+        .top-popup h3 { font-size: 14px; margin-bottom: 10px; color: var(--accent); text-shadow: 0 0 5px var(--accent); }
+        .top-popup .btn-group { display: flex; gap: 10px; justify-content: center; }
+        .top-popup a { display: inline-block; padding: 8px 15px; border-radius: 5px; font-size: 12px; font-weight: bold; text-decoration: none; }
+        .top-popup .btn-ch { background: #25D366; color: #fff; }
+        .top-popup .btn-phone { background: #ff3333; color: #fff; }
+        .close-popup { position: absolute; top: 5px; right: 10px; color: #888; cursor: pointer; font-size: 16px; }
 
         .top-nav { display: flex; justify-content: space-between; align-items: center; padding: 12px 16px; background: rgba(0, 0, 0, 0.9); backdrop-filter: blur(10px); position: sticky; top: 0; z-index: 999; border-bottom: 1px solid var(--accent); box-shadow: 0 0 15px var(--accent-glow); }
         .logo { font-size: 20px; font-weight: 800; font-style: italic; display: flex; align-items: center; gap: 6px; color: var(--accent); text-shadow: 0 0 10px var(--accent); }
@@ -33,7 +41,7 @@
         .banner-text { position: absolute; bottom: 12px; left: 16px; font-size: 24px; font-weight: 800; font-style: italic; color: var(--accent); }
         .banner-text span { display: block; font-size: 10px; font-style: normal; color: #fff; letter-spacing: 2px; }
 
-        .profile-card { margin: -20px 16px 16px; position: relative; z-index: 10; background: #0a1a0a; border: 1px solid var(--accent); border-radius: 16px; padding: 12px; display: flex; align-items: center; gap: 12px; cursor: pointer; box-shadow: 0 0 15px var(--accent-glow); }
+        .profile-card { margin: -20px 16px 16px; position: relative; z-index: 10; background: var(--card-bg); border: 1px solid var(--accent); border-radius: 16px; padding: 12px; display: flex; align-items: center; gap: 12px; cursor: pointer; box-shadow: 0 0 15px var(--accent-glow); }
         .profile-avatar { width: 45px; height: 45px; border-radius: 50%; background: rgba(0,255,0,0.1); display: flex; align-items: center; justify-content: center; font-size: 20px; color: var(--accent); border: 1px solid var(--accent); }
         .profile-info { flex: 1; }
         .profile-info .stats { display: flex; gap: 8px; font-size: 10px; color: var(--sub); margin-bottom: 4px; }
@@ -46,7 +54,7 @@
         .section-title { padding: 0 16px; margin-bottom: 12px; font-size: 16px; font-weight: 600; display: flex; align-items: center; gap: 8px; color: var(--accent); border-bottom: 1px solid var(--border); padding-bottom: 5px; margin-top: 20px; }
         
         .grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; padding: 0 16px; margin-bottom: 20px; }
-        .card { background: #0a1a0a; border-radius: 12px; padding: 12px 6px; display: flex; flex-direction: column; align-items: center; text-align: center; position: relative; cursor: pointer; transition: 0.3s; border: 1px solid var(--border); overflow: hidden; }
+        .card { background: var(--card-bg); border-radius: 12px; padding: 12px 6px; display: flex; flex-direction: column; align-items: center; text-align: center; position: relative; cursor: pointer; transition: 0.3s; border: 1px solid var(--border); overflow: hidden; }
         .card:hover { border-color: var(--accent); box-shadow: 0 0 15px var(--accent-glow); transform: translateY(-2px); }
         .card i.main-icon { font-size: 22px; color: var(--accent); margin-bottom: 6px; }
         .card h3 { font-size: 9px; font-weight: 600; margin-bottom: 2px; color: #fff; text-overflow: ellipsis; white-space: nowrap; overflow: hidden; width: 100%; }
@@ -58,7 +66,7 @@
         .is-locked { filter: grayscale(0.8); opacity: 0.6; }
 
         .modal-overlay { position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0,0,0,0.9); backdrop-filter: blur(5px); display: none; align-items: center; justify-content: center; z-index: 100000; padding: 20px; }
-        .modal-content { background: #0a1a0a; border: 1px solid var(--accent); border-radius: 20px; padding: 24px; max-width: 400px; width: 100%; position: relative; box-shadow: 0 0 30px var(--accent-glow); max-height: 90vh; overflow-y: auto; }
+        .modal-content { background: var(--card-bg); border: 1px solid var(--accent); border-radius: 20px; padding: 24px; max-width: 400px; width: 100%; position: relative; box-shadow: 0 0 30px var(--accent-glow); max-height: 90vh; overflow-y: auto; }
         .modal-close { position: absolute; top: 16px; right: 16px; font-size: 20px; color: var(--sub); cursor: pointer; }
         .modal-content h2 { font-size: 18px; margin-bottom: 16px; color: var(--accent); text-align: center;}
         .modal-content input, .modal-content select, .modal-content textarea { width: 100%; background: #000; border: 1px solid var(--border); border-radius: 10px; padding: 12px; color: #fff; margin-bottom: 12px; outline: none; }
@@ -68,7 +76,7 @@
         .side-menu.open { right: 0; }
         .menu-item { display: flex; align-items: center; gap: 12px; padding: 12px; background: rgba(0,255,0,0.05); border: 1px solid var(--border); border-radius: 12px; text-decoration: none; color: #fff; cursor: pointer; }
 
-        .bug-panel { display: none; padding: 16px; background: #0a1a0a; border: 1px solid var(--accent); border-radius: 16px; margin: 16px; box-shadow: 0 0 20px var(--accent-glow); }
+        .bug-panel { display: none; padding: 16px; background: var(--card-bg); border: 1px solid var(--accent); border-radius: 16px; margin: 16px; box-shadow: 0 0 20px var(--accent-glow); }
         .bug-input { width: 100%; padding: 15px; background: #000; border: 1px solid #444; border-radius: 12px; color: #fff; margin-bottom: 12px; outline: none; }
         .bug-btn { width: 100%; padding: 15px; background: var(--accent); border: none; border-radius: 50px; color: #000; font-weight: 900; font-size: 16px; cursor: pointer; margin-bottom: 10px; }
         .bug-stop { background: #ff3333; color: #fff; }
@@ -80,10 +88,15 @@
 <body>
     <canvas id="matrix-canvas"></canvas>
 
-    <!-- FLOATING WHATSAPP -->
-    <a href="https://whatsapp.com/channel/0029Vb93P22IXnm00tpAg43J" target="_blank" class="floating-wa">
-        <i class="fa-brands fa-whatsapp"></i>
-    </a>
+    <!-- POPUP DARI ATAS -->
+    <div id="top-popup" class="top-popup">
+        <i class="fa-solid fa-xmark close-popup" onclick="document.getElementById('top-popup').classList.remove('show')"></i>
+        <h3>Info Penting & Kontak Admin</h3>
+        <div class="btn-group">
+            <a href="https://whatsapp.com/channel/0029Vb93P22IXnm00tpAg43J" target="_blank" class="btn-ch"><i class="fa-brands fa-whatsapp"></i> Saluran WA</a>
+            <a href="https://wa.me/6285833277934" target="_blank" class="btn-phone"><i class="fa-solid fa-phone"></i> 6285833277934</a>
+        </div>
+    </div>
 
     <div class="top-nav">
         <div class="logo"><i class="fa-solid fa-bolt"></i> KAZE</div>
@@ -117,7 +130,6 @@
         <div class="tab" style="color:#ff3333; border-color:#ff3333;" onclick="showBugPanel(this)"><i class="fa-solid fa-bug"></i> BUG TOOLS</div>
     </div>
 
-    <!-- PANEL BUG -->
     <div id="bug-panel" class="bug-panel">
         <div id="bug-login-view">
             <h3 style="color:var(--accent); margin-bottom:15px; text-align:center;"><i class="fa-solid fa-lock"></i> SIGN IN VVIP ACCESS</h3>
@@ -139,10 +151,8 @@
         </div>
     </div>
 
-    <!-- AREA FITUR -->
     <div id="features-container"></div>
 
-    <!-- SIDE MENU -->
     <div class="side-menu" id="side-menu">
         <div style="display:flex; justify-content:space-between; align-items:center;">
             <h2 style="font-size: 16px; color: var(--accent);">Menu Info</h2>
@@ -212,41 +222,50 @@
     </div>
 
     <script>
-        // 1. MATRIX BACKGROUND (Hitam Pekat, Teks Glow)
+        // 1. MATRIX BACKGROUND (MURNI HITAM, TEKS GLOW)
         const canvas = document.getElementById('matrix-canvas');
         const ctx = canvas.getContext('2d');
-        canvas.width = window.innerWidth; 
+        canvas.width = window.innerWidth;
         canvas.height = window.innerHeight;
-        const chars = "01アイウエオカキクケコサシスセソタチツテトナニヌネノABCDEFGHIJKLMNOPQRSTUVWXYZ@#$%&*";
-        const fontSize = 16; 
-        const columns = Math.floor(canvas.width / fontSize); 
+        const chars = "01アイウエオカキクケコサシスセソタチツテトナニヌネノABCDEFGHIJKLMNOPQRSTUVWXYZ".split("");
+        const fontSize = 16;
+        const columns = Math.floor(canvas.width / fontSize);
         const drops = [];
         
+        // Isi random array biar gak jatoh barengan
         for(let x = 0; x < columns; x++) {
-            drops[x] = Math.random() * canvas.height / fontSize; // Spawn acak biar gak numpuk
+            drops[x] = Math.random() * canvas.height / fontSize;
         }
-        
-        function drawMatrix() {
-            // Background Hitam Transparan (Bikin Efek Trail)
-            ctx.fillStyle = "rgba(0, 0, 0, 0.1)"; 
+
+        function draw() {
+            // Background hitam dengan sedikit transparansi (efek trail)
+            ctx.fillStyle = "rgba(0, 0, 0, 0.1)";
             ctx.fillRect(0, 0, canvas.width, canvas.height);
             
-            // Teks Hijau Glow
-            ctx.fillStyle = "#00ff41"; 
-            ctx.shadowBlur = 8;
-            ctx.shadowColor = "#00ff41";
+            // Teks Glow
+            ctx.fillStyle = "#00FF41";
+            ctx.shadowBlur = 15;
+            ctx.shadowColor = "#00FF41";
             ctx.font = fontSize + "px monospace";
-            
+
             for(let i = 0; i < drops.length; i++) {
                 const text = chars[Math.floor(Math.random() * chars.length)];
                 ctx.fillText(text, i * fontSize, drops[i] * fontSize);
-                if(drops[i] * fontSize > canvas.height && Math.random() > 0.975) drops[i] = 0;
+                
+                if(drops[i] * fontSize > canvas.height && Math.random() > 0.95) {
+                    drops[i] = 0;
+                }
                 drops[i]++;
             }
         }
-        setInterval(drawMatrix, 50);
+        setInterval(draw, 33);
 
-        // 2. DATA FITUR
+        // 2. POPUP SHOW LOGIC
+        setTimeout(() => {
+            document.getElementById('top-popup').classList.add('show');
+        }, 2000); // Muncul setelah 2 detik
+
+        // 3. DATA FITUR
         const basicFeatures = [
             { name: "YT Downloader", icon: "fa-youtube", desc: "MP4/MP3" },
             { name: "TikTok DL", icon: "fa-tiktok", desc: "No WM" },
@@ -271,7 +290,6 @@
         ];
         
         let basicHtml = '';
-        // Loop 100 fitur unik (bukan duplikat 1-20 doang)
         for (let i = 0; i < 100; i++) {
             const f = basicFeatures[i % basicFeatures.length];
             basicHtml += `
@@ -330,7 +348,7 @@
             <div class="grid">${vvipHtml}</div>
         `;
 
-        // 3. LOGIC UI
+        // 4. LOGIC UI
         let userTier = 'GUEST';
         function setTheme(theme) { document.body.setAttribute('data-theme', theme); }
         function setCat(cat, el) {
@@ -364,7 +382,7 @@
             } else { alert('Login Gagal!'); }
         }
 
-        // 4. FITUR BENERAN JALAN DI BROWSER
+        // 5. FITUR BENERAN JALAN DI BROWSER
         function openTool(name, cat, el) {
             if (el && el.classList.contains('vip-lock') && userTier !== 'VIP' && userTier !== 'VVIP' && userTier !== 'DEVELOPER') {
                 document.getElementById('vip-restrict').style.display = 'flex'; return;
@@ -556,7 +574,7 @@
         function sendBug() { alert('Butuh app.py nyala buat nembak'); }
         function stopBug() { alert('Stop'); }
 
-        // MUSIC (FIXED)
+        // MUSIC
         const tracks = [
             { title: "Sad Lofi", src: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" },
             { title: "Piano Chill", src: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-2.mp3" }
@@ -577,7 +595,7 @@
             } else { 
                 audio.play().then(() => {
                     playBtn.className = 'fa-solid fa-pause';
-                }).catch(e => alert("Klik sekali lagi untuk memutar musik (kebijakan browser)."));
+                }).catch(e => console.log(e));
             }
             isPlaying = !isPlaying;
         }
